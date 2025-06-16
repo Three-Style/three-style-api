@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Razorpay Payment</title>
+		<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #000;
+				margin: 0;
+			}
+
+			#pay-now {
+				background-color: #008cba;
+				color: white;
+				border: none;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border-radius: 8px;
+				transition: background-color 0.3s ease;
+			}
+
+			#pay-now:hover {
+				background-color: #005f73;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="text-align: center; color: white">
+			<div>
+				<h2 style="color: white">
+					Authorized User:
+					<p id="txt_user" style="margin-bottom: 20px; font-size: 18px; color: white"></p>
+				</h2>
+				<br />
+			</div>
+			<div>
+				<button id="pay-now" onclick="initiatePayment()">Pay Now</button>
+			</div>
+		</div>
+
+		<script>
+			const UserAuthToken = '';
+
+			const baseURL = 'https://living-rhino-seriously.ngrok-free.app' + '/user/v1';
+
+			const FitnessCourseCartOrder = baseURL + '/fitness-course/create-cart-order';
+			const FitnessCourseOrder = baseURL + '/fitness-course/create-order';
+			const FGMealProductOrder = baseURL + '/meals/create-order';
+			const BookOrder = baseURL + '/books/create-order';
+			const EBookOrder = baseURL + '/ebooks/create-order';
+			const SubscriptionOrder = baseURL + '/subscription/create';
+			const GetProfile = baseURL + '/account/profile';
+
+			const INPTABaseURL = 'https://living-rhino-seriously.ngrok-free.app/inpta-listing';
+			const INPTATrainingAndPlacementOrder = INPTABaseURL + '/payment-order/training-placement-listing';
+			const INPTATrainingAndCenterListing = INPTABaseURL + '/payment-order/training-center-listing';
+			const INPTATrainingAndCenterCertificateSubmission = INPTABaseURL + '/payment-order/training-center-certificate-submission';
+			const INPTATrainingAndCenterApprovalFee = INPTABaseURL + '/payment-order/training-center-approval-fee';
+
+			async function initiatePayment() {
+				// Your payment initiation code here
+				const response = await fetch(INPTATrainingAndPlacementOrder + '?listing_id=67ac25d25cd1dccadb962b98', {
+					method: 'GET',
+					headers: { 'Content-Type': 'application/json', Authorization: UserAuthToken },
+					// body: JSON.stringify({
+					// 	plan_id: 'plan_P8nI95y6qnRumx',
+					// 	total_count: 3,
+					// 	quantity: 1,
+					// 	customer_notify: 1,
+					// }),
+				});
+
+				const RazorpayPayload = await response.json();
+				if (RazorpayPayload.status != 200 && RazorpayPayload.status != 201) {
+					return alert(RazorpayPayload.message);
+				} else {
+					const rzp1 = new Razorpay(RazorpayPayload.data);
+					rzp1.open();
+				}
+			}
+
+			async function getAuthorizedUser() {
+				const response = await fetch(GetProfile, {
+					method: 'GET',
+					headers: { Authorization: UserAuthToken },
+				});
+
+				const user = await response.json();
+				document.getElementById('txt_user').innerText = user?.data?.user?.email || 'Failed to get user';
+			}
+			getAuthorizedUser();
+		</script>
+	</body>
+</html>

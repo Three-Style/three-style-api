@@ -1,0 +1,10 @@
+node_modules
+.env
+.logs
+*.log
+.env.*
+.tmp
+Google.*
+fgiit-app-firebase-admin-sdk.json
+.eslintcache
+src/config/secrets.json

@@ -1,0 +1,545 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>FGIIT Book</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"
+		></script>
+		<style>
+			@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+				u ~ div .email-container {
+					min-width: 320px !important;
+				}
+			}
+
+			/* iPhone 6, 6S, 7, 8, and X */
+
+			@media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+				u ~ div .email-container {
+					min-width: 375px !important;
+				}
+			}
+
+			/* iPhone 6+, 7+, and 8+ */
+
+			@media only screen and (min-device-width: 414px) {
+				u ~ div .email-container {
+					min-width: 414px !important;
+				}
+			}
+
+			@media (max-width: 991.98px) {
+				.hed h2 {
+					font-size: 30px;
+					line-height: 45px;
+					letter-spacing: 20px;
+				}
+
+				.hed h3 {
+					font-size: 15px;
+				}
+			}
+
+			@media (max-width: 575.98px) {
+				.hed1 {
+					position: absolute;
+					top: 50%;
+					left: 30px;
+					transform: translate(0, -50%);
+				}
+
+				.hed h2 {
+					font-size: 21px;
+					line-height: 27px;
+					letter-spacing: 10px;
+				}
+
+				.hed h3 {
+					font-size: 11px;
+				}
+			}
+		</style>
+		<!-- <style>
+      a {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: none !important;
+      }
+
+      .margintop {
+        margin-top: 80px;
+      }
+
+      .hed1 {
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        transform: translate(0, -50%);
+      }
+
+      .hed h3 {
+        font-size: 10px;
+        line-height: 30px;
+        color: white;
+        font-family: Montserrat;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-weight: 600;
+        visibility: inherit;
+        transition: none 0s ease 0s;
+        text-align: inherit;
+        border-width: 0px;
+        margin: 0px;
+        padding: 0px;
+        animation-delay: 0.3s;
+      }
+
+      .hed h2 {
+        white-space: normal;
+        font-size: 30px;
+        line-height: 45px;
+        font-weight: 700;
+        color: white;
+        font-family: Montserrat;
+        text-transform: uppercase;
+        letter-spacing: 30px;
+        text-align: inherit;
+        margin: 0px;
+        padding: 0px;
+        animation-delay: 0.8s;
+      }
+
+      .DEFINE1 h4 {
+        color: #24d075;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .DEFINE1 h3 {
+        font-size: 20px;
+        color: white;
+        font-family: Montserrat, sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .DEFINE1 h5 {
+        color: white;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 20px;
+        font-size: 13px;
+      }
+
+      .DEFINE1 p {
+        font-family: Montserrat, sans-serif;
+        font-size: 12px;
+        /* line-height: 26px; */
+        color: grey;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+      }
+
+      .DEFINE1 a {
+        color: rgb(255, 255, 255);
+        font-size: 12px;
+        background-color: rgb(36, 208, 117);
+        border-color: rgb(36, 208, 117);
+        padding: 13px 48px;
+        line-height: 1.8em;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 20px;
+        display: inline-block;
+        border-radius: 30px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        transition: 0.3s;
+      }
+
+      .DEF a {
+        color: rgb(36, 208, 117);
+        font-size: 12px;
+        border: rgb(36, 208, 117);
+        text-transform: uppercase;
+        text-align: center;
+        display: inline-block;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        font-size: 10px;
+      }
+
+      .icon-content-block {
+        background: #161619;
+        box-shadow: 15px 15px 30px rgb(0 0 0 / 30%);
+      }
+
+      .f1 p {
+        margin-top: 31px;
+        font-size: 15px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        -webkit-letter-spacing: normal;
+        -moz-letter-spacing: normal;
+        -ms-letter-spacing: normal;
+        letter-spacing: normal;
+        color: #a2a2a2;
+        font-family: Montserrat, sans-serif;
+        line-height: 30px;
+        text-transform: capitalize !important;
+      }
+
+      .f2 h4,
+      .f3 h4 {
+        font-size: 17px;
+        color: rgb(36, 208, 117);
+        padding-top: 12px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        text-transform: uppercase !important;
+        letter-spacing: 0.2em;
+      }
+
+      .f2 a {
+        font-size: 15px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        color: white !important;
+        text-transform: capitalize !important;
+        display: inline-block;
+        transition: 0.5s;
+      }
+
+      .f2 a:hover {
+        color: #24d075 !important;
+      }
+
+      .f3 a {
+        font-size: 20px;
+        border-radius: 100%;
+        margin-right: 16px;
+        text-transform: capitalize !important;
+        color: white !important;
+        transition: 0.5s;
+      }
+
+      .fb:hover {
+        color: #24d075 !important;
+      }
+
+      .ft {
+        background-color: #111213 !important;
+        padding: 25px;
+        margin-top: 50px;
+      }
+
+      .ft h4 {
+        font-size: 16px;
+        color: #a2a2a2;
+        padding-top: 12px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 700;
+        border-bottom: 1px solid #a2a2a2;
+        text-transform: uppercase !important;
+      }
+
+      /* .m-table-css {
+        color: white;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 20px;
+        font-size: 13px;
+        padding: 10px 15px;
+        margin: 20px 0px 0px 0px;
+      } */
+    </style> -->
+	</head>
+
+	<body>
+		<div style="max-width: 600px; margin: 0 auto; background-color: #222327" class="email-container">
+			<section>
+				<div class="container-fluid p-0 m-0 position-relative">
+					<div class="hed">
+						<img
+							src="https://ci3.googleusercontent.com/meips/ADKq_NZcH3VYSxTq3KznyZSjJaDe2VlDmhrp0CH1tqu7P7JLZcFuxwnF_W562lU8-h0svIxgZ2WszJ6M6ZD4ZupkksU9rRmnLQ=s0-d-e1-ft#https://files.fggroup.in/email-docs/slide02.jpg"
+							width="100%"
+						/>
+					</div>
+				</div>
+				<div style="max-width: 600px; padding: 25px 0px 25px 0px; margin: 0 auto">
+					<h4
+						style="
+							color: #24d075;
+							text-align: center;
+							font-size: 15px;
+							font-weight: 700;
+							font-family: Montserrat, sans-serif;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin: 0px;
+							padding: 15px;
+						"
+					>
+						Order Details
+					</h4>
+
+					<h5
+						style="
+							color: white;
+							font-family: Montserrat, sans-serif;
+							font-weight: 500;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin-top: 20px;
+							font-size: 13px;
+							padding: 0px 15px;
+							margin: 20px 0px 0px 0px;
+						"
+					>
+						Receipt Id :-
+					</h5>
+					<p style="font-family: Montserrat, sans-serif; font-size: 12px; line-height: 26px; color: grey; font-weight: 500; letter-spacing: 0.2em; padding: 0px 15px">- {{receipt_id}}</p>
+					<div style="padding: 20px; display: flex">
+						<table role="presentation" id="m_-8895863997807903272tbl_invoice_table" cellspacing="0" width="100%" style="border-collapse: collapse">
+							<thead style="font-weight: 800; background-color: #000000">
+								<tr>
+									<th colspan="3" class="m-table-css" style="padding: 10px; border: 1px solid #424242; color: white">Product Name</th>
+									<th class="m-table-css" style="padding: 10px; border: 1px solid #424242; color: white">Quantity</th>
+									<th class="m-table-css" style="padding: 10px; border: 1px solid #424242; color: white">Amount</th>
+								</tr>
+							</thead>
+							<tbody style="font-weight: 400">
+								{{books_list}}
+								<!-- <tr>
+                <td colspan="3" class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  Diploma In Personal Training Course
+                </td>
+                <td class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  1
+                </td>
+                <td class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  299
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  Anabolic Androgenic Steroids
+                </td>
+                <td class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  1
+                </td>
+                <td class="m-table-css" style="
+                      padding: 10px;
+                      border: 1px solid #424242;
+                      font-size: 12px;
+                      color: white;
+                    ">
+                  399
+                </td>
+              </tr> -->
+							</tbody>
+							<tfoot style="font-weight: 800; background-color: #000000">
+								<tr>
+									<td colspan="3" class="m-table-css" style="padding: 10px; border: 1px solid #424242; text-align: right; color: white">Total Amount</td>
+									<td colspan="2" class="m-table-css" style="padding: 10px; border: 1px solid #424242; font-size: 12px; color: white">{{total_amount}}</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+
+					<hr />
+					<h4
+						style="
+							color: #24d075;
+							text-align: center;
+							font-size: 15px;
+							font-weight: 700;
+							font-family: Montserrat, sans-serif;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin: 0px;
+							padding: 15px;
+						"
+					>
+						Shipping Details
+					</h4>
+
+					<h5
+						style="
+							color: white;
+							font-family: Montserrat, sans-serif;
+							font-weight: 500;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin-top: 20px;
+							font-size: 13px;
+							padding: 0px 15px;
+							margin: 20px 0px 0px 0px;
+						"
+					>
+						Delivery Address :-
+					</h5>
+					<p style="font-family: Montserrat, sans-serif; font-size: 12px; line-height: 26px; color: grey; font-weight: 500; letter-spacing: 0.2em; padding: 0px 15px">- {{delivery_address}}</p>
+
+					<h5
+						style="
+							color: white;
+							font-family: Montserrat, sans-serif;
+							font-weight: 500;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin-top: 20px;
+							font-size: 13px;
+							padding: 0px 15px;
+							margin: 20px 0px 0px 0px;
+						"
+					>
+						City & Pin Code :-
+					</h5>
+					<p style="font-family: Montserrat, sans-serif; font-size: 12px; line-height: 26px; color: grey; font-weight: 500; letter-spacing: 0.2em; padding: 0px 15px">- {{city_pin_code}}</p>
+
+					<h5
+						style="
+							color: white;
+							font-family: Montserrat, sans-serif;
+							font-weight: 500;
+							letter-spacing: 0.2em;
+							text-transform: uppercase;
+							margin-top: 20px;
+							font-size: 13px;
+							padding: 0px 15px;
+							margin: 20px 0px 0px 0px;
+						"
+					>
+						Estimate Delivery On :-
+					</h5>
+					<p style="font-family: Montserrat, sans-serif; font-size: 12px; line-height: 26px; color: grey; font-weight: 500; letter-spacing: 0.2em; padding: 0px 15px">- {{estimate_delivery_on}}</p>
+
+					<p
+						style="
+							font-family: Montserrat, sans-serif;
+							font-size: 12px;
+							line-height: 26px;
+							color: grey;
+							font-weight: 500;
+							letter-spacing: 0.2em;
+							text-align: center;
+							padding: 20px 15px 15px 15px;
+							margin-bottom: 0px;
+						"
+					>
+						If you have any query reply this email we will get back to you as soon as possible.
+					</p>
+				</div>
+			</section>
+			<footer class="">
+				<div style="background-color: black; padding: 50px 0px 25px 0px; width: 100%">
+					<div style="margin: auto; width: 450px">
+						<div style="margin: auto">
+							<div class="text-center f3 mb-4" style="width: 450px; text-align: center">
+								<h4 style="color: #24d075">Follow Us</h4>
+								<div>
+									<a href="" style="margin: 0px 5px" class="fb">
+										<img
+											src="https://ci3.googleusercontent.com/meips/ADKq_NY7uawcawbtzIbv6S0EZXq01kqRZOvVoEXa6-4opDZzU0eXrIpw9Y8PAzTWfZa-AdxOmXXhoImllUpI1Io_DKRcc9mK8dE=s0-d-e1-ft#https://files.fggroup.in/email-docs/whatsapp.png"
+											width="24px"
+										/>
+									</a>
+									<a href="" class="fb" style="margin: 0px 5px">
+										<img
+											src="https://ci3.googleusercontent.com/meips/ADKq_NZsCbA1_4U_47WZ75nigjT_ZZCgzs24HvClTXIfAORb5NAXEwYfINZTagG0ZIqsYENrt-iVj3WXN5owhW7PrqtRr-RYbls=s0-d-e1-ft#https://files.fggroup.in/email-docs/facebook.png"
+											width="24px"
+										/>
+									</a>
+									<a href="" class="fb" style="margin: 0px 5px">
+										<img
+											src="https://ci3.googleusercontent.com/meips/ADKq_NanEloRP4MES1XhomBSVui2vXT9F9Q4b-9THx54eH6SiKigb-u0FpnpYmoyGDE_ZFf-yxL9h9zimL0FGn9MqkGNHqkLQhQUxUudeXs=s0-d-e1-ft#https://files.fggroup.in/email-docs/instagram_icon.png"
+											width="24px"
+										/>
+									</a>
+									<a href="" class="fb" style="margin: 0px 5px">
+										<img
+											src="https://ci3.googleusercontent.com/meips/ADKq_NYYxpfWTOZl05gL96hGL53TLMG-8L-4fa7PhBg-qoKYmuMaU5CKmIR9ybSfCyfy2NeTzkIgGQy-9mGaXWA_yI61xQ=s0-d-e1-ft#https://files.fggroup.in/email-docs/link.png"
+											width="22px"
+										/>
+									</a>
+								</div>
+							</div>
+							<div class="DEFINE1 text-center f3 mb-4" style="width: 450px; text-align: center">
+								<h4 style="color: #24d075">HEAD OFFICE</h4>
+								<p style="color: grey">301, Ambrosia Business Hub, VIP Road, beside SMC Garden, Vesu, Surat, Gujarat 395007</p>
+							</div>
+							<div class="DEFINE1 text-center f3" style="width: 450px; text-align: center">
+								<h4 style="color: #24d075">CALL NOW FOR SERVICE</h4>
+								<p style="color: grey">
+									Dt. Gautam Jani :+91 88668 42520
+									<br />
+									Dt. Foram Desai :+91 83474 38199
+								</p>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

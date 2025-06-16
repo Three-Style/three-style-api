@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Mailer Template Tester</title>
+		<link rel="shortcut icon" type="image/x-icon" href="https://fggroup.in/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f9;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container {
+				background-color: #fff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				padding: 20px;
+				border-radius: 8px;
+			}
+
+			h4 {
+				text-align: center;
+				margin-bottom: 20px;
+				color: #4a4a4a;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+			}
+
+			label {
+				font-weight: bold;
+				margin-bottom: 5px;
+			}
+
+			input[type='text'],
+			input[type='file'],
+			select,
+			button {
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 16px;
+			}
+
+			input[type='text']:focus,
+			input[type='file']:focus,
+			select:focus {
+				border-color: #007bff;
+				outline: none;
+				box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+			}
+
+			select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				background-color: white;
+				background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="none" stroke="#0056b3" stroke-width="2" d="M2 5l6 6 6-6"/></svg>');
+				background-repeat: no-repeat;
+				background-position: right 10px center;
+				background-size: 12px;
+			}
+
+			button {
+				background-color: #007bff;
+				color: white;
+				border: none;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+
+			button:hover {
+				background-color: #0056b3;
+			}
+
+			#timer {
+				text-align: center;
+				font-size: 18px;
+				color: #d9534f;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h4>This is internal email client UI tester. Only open for internal development team only.</h4>
+
+			<form enctype="multipart/form-data">
+				<!-- <label for="dev-id">Select your developer ID:</label> -->
+				<select id="dev-id" name="id">
+					<option value="">Select Developer ID</option>
+					<option value="BRIJESH">BRIJESH</option>
+				</select>
+
+				<label for="file">Select Template HTML File</label>
+				<input type="file" id="file" name="file" accept=".html" />
+
+				<p id="timer"></p>
+
+				<button>Test Mail</button>
+			</form>
+		</div>
+
+		<script>
+			document.querySelector('button').addEventListener('click', function (e) {
+				e.preventDefault();
+				var formData = new FormData();
+				let id = document.querySelector('select[name="id"]').value; // Adjusted selector
+				let file = document.querySelector('input[name="file"]').files[0];
+
+				if (!id || !file) {
+					return alert('Please fill all the fields and select the file');
+				}
+
+				formData.append('id', id);
+				formData.append('file', file);
+
+				// Hide Button for 10 Seconds
+				document.querySelector('button').style.display = 'none';
+				setTimeout(function () {
+					document.querySelector('button').style.display = 'block';
+				}, 10000);
+
+				// Show 10 Seconds Timer in timer id for 10 seconds
+				let timer = document.querySelector('#timer'),
+					seconds = 10,
+					timerId = setInterval(function () {
+						seconds--;
+						timer.innerHTML = 'Please wait... ' + seconds;
+						if (seconds <= 0) {
+							clearInterval(timerId);
+							timer.innerHTML = '';
+						}
+					}, 1000);
+
+				let xhr = new XMLHttpRequest();
+				xhr.open('POST', `${window.location.origin}/debug/mail-template/send-mail`);
+				xhr.onload = function () {
+					if (xhr.status >= 200 && xhr.status < 400) {
+						alert(xhr.responseText);
+					} else {
+						alert('Error: ' + xhr.statusText);
+					}
+				};
+				xhr.onerror = function () {
+					alert('Request failed');
+				};
+				xhr.send(formData);
+			});
+		</script>
+	</body>
+</html>

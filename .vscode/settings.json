@@ -1,0 +1,115 @@
+{
+	"liveServer.settings.port": 8081,
+	"cSpell.customDictionaries": {
+		"custom-dictionary-workspace": {
+			"name": "custom-dictionary-workspace",
+			"path": "${workspaceFolder:three-style-apis}/.cspell/custom-dictionary-workspace.txt",
+			"addWords": true,
+			"scope": "workspace"
+		}
+	},
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"eslint.format.enable": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always"
+	},
+	"prettier.requireConfig": true,
+	"prettier.configPath": ".prettierrc.json",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#2f7c47",
+		"activityBar.background": "#2f7c47",
+		"activityBar.foreground": "#e7e7e7",
+		"activityBar.inactiveForeground": "#e7e7e799",
+		"activityBarBadge.background": "#422c74",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"commandCenter.border": "#e7e7e799",
+		"sash.hoverBorder": "#2f7c47",
+		"statusBar.background": "#215732",
+		"statusBar.foreground": "#e7e7e7",
+		"statusBarItem.hoverBackground": "#2f7c47",
+		"statusBarItem.remoteBackground": "#215732",
+		"statusBarItem.remoteForeground": "#e7e7e7",
+		"titleBar.activeBackground": "#215732",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveBackground": "#21573299",
+		"titleBar.inactiveForeground": "#e7e7e799"
+	},
+	"peacock.color": "#215732",
+	"todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]", "TODO[]", "TODO[x]", "BUG[]", "BUG[x]", "FIXME[]", "FIXME[x]", "REFACTOR", "REFACTOR[]", "REFACTOR[x]"],
+	"todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+\\.))\\s*($TAGS)\\s*(@\\w+)?",
+	"todo-tree.regex.subTagRegex": "(@\\w+)",
+	"todo-tree.highlights.customHighlight": {
+		"BUG": {
+			"icon": "bug"
+		},
+		"HACK": {
+			"icon": "tools"
+		},
+		"FIXME": {
+			"icon": "flame"
+		},
+		"XXX": {
+			"icon": "x"
+		},
+		"[ ]": {
+			"icon": "issue-draft"
+		},
+		"[x]": {
+			"icon": "issue-closed"
+		},
+		"TODO[]": {
+			"icon": "circle",
+			"foreground": "#ff8080", // Lighter red
+			"iconColour": "#ff8080",
+			"type": "text-and-comment"
+		},
+		"TODO[x]": {
+			"icon": "check-circle-fill",
+			"foreground": "#90EE90", // Lighter green
+			"iconColour": "#90EE90",
+			"type": "text-and-comment"
+		},
+		"BUG[]": {
+			"icon": "bug",
+			"foreground": "#ff8080",
+			"iconColour": "#ff8080",
+			"type": "text-and-comment"
+		},
+		"BUG[x]": {
+			"icon": "bug",
+			"foreground": "#90EE90",
+			"iconColour": "#90EE90",
+			"type": "text-and-comment"
+		},
+		"FIXME[]": {
+			"icon": "flame",
+			"foreground": "#ff8080",
+			"iconColour": "#ff8080",
+			"type": "text-and-comment"
+		},
+		"FIXME[x]": {
+			"icon": "flame",
+			"foreground": "#90EE90",
+			"iconColour": "#90EE90",
+			"type": "text-and-comment"
+		},
+		"REFACTOR": {
+			"icon": "sync"
+		},
+		"REFACTOR[]": {
+			"icon": "sync",
+			"foreground": "#ff8080",
+			"iconColour": "#ff8080",
+			"type": "text-and-comment"
+		},
+		"REFACTOR[x]": {
+			"icon": "sync",
+			"foreground": "#90EE90",
+			"iconColour": "#90EE90",
+			"type": "text-and-comment"
+		}
+	}
+}

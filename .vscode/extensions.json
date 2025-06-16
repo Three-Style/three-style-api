@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "johnpapa.vscode-peacock",
+        "streetsidesoftware.code-spell-checker",
+        "chamboug.js-auto-backticks",
+        "PKief.material-icon-theme",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint",
+        "Gruntfuggly.todo-tree"
+    ]
+}

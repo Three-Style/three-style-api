@@ -1,0 +1,12 @@
+# Custom Dictionary Words
+colspan
+feedpath
+Freemium
+ifsc
+isoweek
+pinterest
+razorpay
+searchanalytics
+searchconsole
+Tabata
+virtual

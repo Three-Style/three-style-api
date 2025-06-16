@@ -1,0 +1,71 @@
+{
+	"winston": {
+		"level": "debug"
+	},
+	"logging": {
+		"firebaseAdmin": true,
+		"mongoose": true,
+		"NODE_ENV": true,
+		"jwt": true,
+		"bcryptjs": false,
+		"razorpay": true,
+		"multerS3": true,
+		"nodemailer": false
+	},
+	"bcryptjs": {
+		"salt": 6
+	},
+	"cors": {
+		"whitelist": ["https://fggroup.in", "https://admin.fggroup.in"]
+	},
+	"awsSDK": {
+		"region": "ap-south-1",
+		"bucketName": "three-style",
+		"directory": {
+			"files": "files",
+			"products": "products",
+			"users": "users",
+			"books": "books",
+			"ebooks": "ebooks",
+			"contactInquiry": "contact-inquiry",
+			"projectFiles": "project-files",
+			"projectSubmissions": "project-submissions",
+			"lecture": "lecture",
+			"certificates": "certificates",
+			"chatDocuments": "chat-document"
+		},
+		"acl": "public-read"
+	},
+	"multer": {
+		"validMimeType": [
+			"image/png",
+			"image/jpeg",
+			"image/jpg",
+			"audio/mp3",
+			"audio/x-wav",
+			"audio/wav",
+			"audio/mpeg",
+			"audio/ogg",
+			"audio/mp4",
+			"video/mp4",
+			"video/quicktime",
+			"video/3gpp",
+			"video/x-matroska",
+			"video/webm",
+			"application/pdf",
+			"application/msword",
+			"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+			"application/vnd.ms-excel",
+			"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+			"application/vnd.ms-powerpoint",
+			"application/vnd.openxmlformats-officedocument.presentationml.presentation",
+			"application/vnd.oasis.opendocument.text",
+			"application/vnd.oasis.opendocument.spreadsheet",
+			"application/vnd.oasis.opendocument.presentation",
+			"application/mp4"
+		]
+	},
+	"filesHost": "https://files.fggroup.in",
+	"healthCheckPaths": ["/", "/health", "/_ah/start"],
+	"ignoreLogPaths": ["/favicon.ico", "/images/icons/gear.png"]
+}

@@ -1,0 +1,254 @@
+[
+	{
+		"_id": "600f7a0ab6868e387407a8c9",
+		"amount": 41990,
+		"coaching_mode": "PHYSICAL",
+		"course_name": "Diploma In Nutrition",
+		"duration_days": 90,
+		"status": true,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6010e9f3eb38ac0a706af298",
+		"amount": 17990,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Certified Personal Trainer",
+		"duration_days": 60,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "6010e770eb38ac0a706af295",
+		"amount": 11799,
+		"coaching_mode": "PHYSICAL",
+		"course_name": "Tabata & Functional Trainer",
+		"duration_days": 15,
+		"status": true,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6010f26149f0473b9c50792d",
+		"amount": 6300,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Anabolic Androgenic Steroids",
+		"duration_days": 30,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "600e5b2099180b31447a0ef9",
+		"amount": 69620,
+		"coaching_mode": "PHYSICAL",
+		"course_name": "Nutri Trainer",
+		"duration_days": 180,
+		"status": true,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6010f018d332f6324c6bbd68",
+		"amount": 6300,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Tabata & Functional Workshop",
+		"duration_days": 15,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "6010e899eb38ac0a706af297",
+		"amount": 18054,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Certified Nutrition Course",
+		"duration_days": 60,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "6010e781eb38ac0a706af296",
+		"amount": 31990,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Nutri Trainer",
+		"duration_days": 120,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "600e698486d2eb34f0796e20",
+		"amount": 41990,
+		"coaching_mode": "PHYSICAL",
+		"course_name": "Diploma In Personal Training",
+		"duration_days": 90,
+		"status": true,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "615c8e410cc8396b2fde5587",
+		"amount": 7200,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Flexible Learning",
+		"duration_days": 120,
+		"status": true,
+		"course_category": "Flexible Learning"
+	},
+	{
+		"_id": "61838b7b21abcf4633d86315",
+		"amount": 5899,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Injury Rehab Course",
+		"duration_days": 30,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "61e8b11b74eefa46b0554892",
+		"status": true,
+		"course_name": "Diploma In Personal Training - Flexible Learning",
+		"duration_days": 90,
+		"amount": 589,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning"
+	},
+	{
+		"_id": "61e8b18c74eefa46b05548a0",
+		"status": true,
+		"course_name": "Anabolic Androgenic Steroids Masterclass",
+		"duration_days": 30,
+		"amount": 5899,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "61e8b1aa74eefa46b05548a3",
+		"status": true,
+		"course_name": "Injury Rehabilitation Masterclass - Flexible Learning",
+		"duration_days": 30,
+		"amount": 353,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning"
+	},
+	{
+		"_id": "61e8b1c374eefa46b05548a6",
+		"status": true,
+		"course_name": "Group Instructor Masterclass",
+		"duration_days": 30,
+		"amount": 5899,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "61e8b11b74eefa46b0554898",
+		"status": true,
+		"course_name": "Certified Wellness Consultant - Flexible Learning",
+		"duration_days": 90,
+		"amount": 589,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning"
+	},
+	{
+		"_id": "61e8b11b74eefa46b0554998",
+		"status": true,
+		"course_name": "Diploma In Nutrition Course - Flexible Learning",
+		"duration_days": 90,
+		"amount": 589,
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning"
+	},
+	{
+		"_id": "627eb6206c033c16f2d5bce5",
+		"course_name": "Certified Wellness Consultant",
+		"coaching_mode": "VIRTUAL",
+		"status": true,
+		"duration_days": 30,
+		"amount": 5899,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "6297d5e833971335bde5e23e",
+		"course_name": "Certified Wellness Consultant",
+		"coaching_mode": "PHYSICAL",
+		"status": true,
+		"duration_days": 30,
+		"amount": 11799,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6297dde033971335bde5e241",
+		"course_name": "Injury Rehabilitation Workshop",
+		"coaching_mode": "PHYSICAL",
+		"status": true,
+		"duration_days": 30,
+		"amount": 11799,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6297ddf133971335bde5e244",
+		"course_name": "Group Instructor Workshop",
+		"coaching_mode": "PHYSICAL",
+		"status": true,
+		"duration_days": 30,
+		"amount": 11799,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "6297dead33971335bde5e247",
+		"course_name": "Anabolic Androgenic Steroids Masterclass",
+		"coaching_mode": "PHYSICAL",
+		"status": true,
+		"duration_days": 30,
+		"amount": 18054,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "62ca5619342a0f40d3672143",
+		"amount": 17990,
+		"coaching_mode": "VIRTUAL",
+		"course_name": "Gym Management Course",
+		"duration_days": 120,
+		"status": true,
+		"course_category": "Online Course"
+	},
+	{
+		"_id": "62ca57e4901f1685129e0eaf",
+		"amount": 41990,
+		"coaching_mode": "PHYSICAL",
+		"course_name": "Gym Management Course",
+		"duration_days": 90,
+		"status": true,
+		"course_category": "Offline Course"
+	},
+	{
+		"_id": "62d33bae0ac1b482c32bd445",
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning",
+		"course_name": "Nutri Trainer - Flexible Learning",
+		"duration_days": 180,
+		"status": true,
+		"amount": 1179
+	},
+	{
+		"_id": "62d31069a42ac852003a0435",
+		"coaching_mode": "VIRTUAL",
+		"amount": 589,
+		"course_category": "Flexible Learning",
+		"course_name": "Gym Management Course - Flexible Learning",
+		"duration_days": 90,
+		"status": true
+	},
+	{
+		"_id": "62d313f6430256c7c261cbd0",
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning",
+		"course_name": "Anabolic Androgenic Steroids Masterclass - Flexible Learning",
+		"duration_days": 30,
+		"status": true,
+		"amount": 353
+	},
+	{
+		"_id": "62d33b670ac1b482c32bd442",
+		"coaching_mode": "VIRTUAL",
+		"course_category": "Flexible Learning",
+		"course_name": "Group Instructor Masterclass - Flexible Learning",
+		"duration_days": 30,
+		"amount": 353,
+		"status": true
+	}
+]

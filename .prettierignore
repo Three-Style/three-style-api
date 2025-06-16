@@ -1,0 +1,8 @@
+src/controllers/admin/location/countries-states-cities.json
+node_modules
+.logs
+.cspell
+.vscode
+.env.*
+DB.certificates-mapped.json
+src/public/**/assets/**
