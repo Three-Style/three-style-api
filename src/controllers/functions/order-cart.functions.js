@@ -1,11 +1,11 @@
 const { isUndefined } = require('lodash');
 const { itemType } = require('../../common');
-const { OrderCartsRepo, ProductsRepo, BooksRepo, FitnessCourseRepo } = require('../../database');
+const { OrderCartsRepo, ProductsRepo } = require('../../database');
 const { JoiObjectIdValidator } = require('../../helpers/joi-custom-validators.helpers');
 const { convertToObjectId } = require('../../helpers/mongodb-query-builder.helpers');
 const { Joi } = require('../../services');
 
-const validItemType = [itemType.meals, itemType.books, itemType.fitness_course, itemType.pure_go_meals, itemType.medical_product];
+const validItemType = [itemType.clothing];
 
 /**
  * @author Brijesh Prajapati
@@ -61,18 +61,11 @@ async function addItemToCart(params) {
 				.valid(...validItemType)
 				.required(),
 			quantity: Joi.when('item_type', {
-				is: Joi.valid(itemType.meals, itemType.books),
+				is: Joi.valid(itemType.clothing),
 				then: Joi.number().integer().min(1).default(1).required(),
 				otherwise: Joi.number().default(1),
 			}),
-			notes: Joi.object({})
-				.when('item_type', {
-					is: itemType.fitness_course,
-					then: Joi.object({
-						submission_id: Joi.number().integer().optional(),
-					}),
-				})
-				.optional(),
+			notes: Joi.object({}).optional(),
 		})
 		.required();
 
@@ -84,7 +77,7 @@ async function addItemToCart(params) {
 	params.item_id = convertToObjectId(params.item_id);
 
 	// Validate Items
-	if (params.item_type === itemType.meals) {
+	if (params.item_type === itemType.clothing) {
 		let findQuery = {
 			_id: params.item_id,
 		};
@@ -93,18 +86,6 @@ async function addItemToCart(params) {
 
 		if (!isProductExist) {
 			throw new Error('Product does not exist for given id');
-		}
-	} else if (params.item_type === itemType.books) {
-		const isBookExist = await BooksRepo.exists({ _id: params.item_id });
-
-		if (!isBookExist) {
-			throw new Error('Book does not exist for given id');
-		}
-	} else if (params.item_type === itemType.fitness_course) {
-		const isFitnessCourseExist = await FitnessCourseRepo.exists({ _id: params.item_id });
-
-		if (!isFitnessCourseExist) {
-			throw new Error('Fitness Course does not exist for given id');
 		}
 	}
 
@@ -126,7 +107,7 @@ async function addItemToCart(params) {
 
 	// Update or Insert Item Object
 	const itemIndex = activeCart.items.findIndex((item) => {
-		if (params.item_type === itemType.meals) {
+		if (params.item_type === itemType.clothing) {
 			return item.item_id.equals(params.item_id);
 		}
 

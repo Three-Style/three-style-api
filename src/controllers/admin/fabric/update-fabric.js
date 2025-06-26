@@ -7,6 +7,7 @@ const httpStatus = require('http-status');
 const { FabricRepo } = require('../../../database'),
 	response = require('../../../utils/response');
 const { Joi } = require('../../../services');
+const { JoiObjectIdValidator } = require('../../../helpers/joi-custom-validators.helpers');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Admin > Fabric > Update Fabric');
@@ -14,6 +15,7 @@ module.exports = async (req, res) => {
 	let adminAuthData = req.headers.adminAuthData;
 
 	const BodySchema = Joi.object({
+		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		name: Joi.string().required(),
 	});
 

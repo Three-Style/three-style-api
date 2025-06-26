@@ -4,9 +4,10 @@
  */
 
 const httpStatus = require('http-status');
-const { ProductsRepo } = require('../../../database');
+const { ProductsRepo, CategoriesRepo, FabricRepo, SubCategoriesRepo } = require('../../../database');
 const response = require('../../../utils/response');
 const { Joi } = require('../../../services');
+const { JoiObjectIdValidator } = require('../../../helpers/joi-custom-validators.helpers');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Admin > Products > Update Product');
@@ -14,17 +15,21 @@ module.exports = async (req, res) => {
 	let adminAuthData = req.headers.adminAuthData;
 
 	const BodySchema = Joi.object({
+		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		display_image: Joi.array().items(Joi.string()).optional(),
-		name: Joi.string().optional(),
+		name: Joi.string().required(),
 		price: Joi.number().min(1).optional(),
 		discount_price: Joi.number().min(1).optional(),
 		discount_percentage: Joi.number().min(1).optional(),
 		description: Joi.string().optional(),
-		categories: Joi.string().optional(),
-		fabric: Joi.string().optional(),
-		sub_categories: Joi.string().optional(),
+		categories: Joi.string().custom(JoiObjectIdValidator).optional(),
+		fabric: Joi.string().custom(JoiObjectIdValidator).optional(),
+		sub_categories: Joi.string().custom(JoiObjectIdValidator).optional(),
 		stock: Joi.number().min(1).optional(),
-		color: Joi.string().optional(),
+		color: Joi.object({
+			color_name: Joi.string().optional(),
+			color_code: Joi.string().optional(),
+		}).optional(),
 		tags: Joi.array().items(Joi.string()).optional(),
 	});
 
@@ -34,6 +39,24 @@ module.exports = async (req, res) => {
 	let { id, display_image, name, price, discount_price, discount_percentage, description, categories, fabric, sub_categories, stock, color, tags, status } = req.body;
 
 	try {
+		if (categories) {
+			const categoriesData = await CategoriesRepo.findById(categories);
+			if (!categoriesData) {
+				return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something Went Wrong', 'Category not found');
+			}
+		}
+		if (fabric) {
+			const fabricData = await FabricRepo.findById(fabric);
+			if (!fabricData) {
+				return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something Went Wrong', 'Fabric not found');
+			}
+		}
+		if (sub_categories) {
+			const subCategoriesData = await SubCategoriesRepo.findById(sub_categories);
+			if (!subCategoriesData) {
+				return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something Went Wrong', 'Sub Category not found');
+			}
+		}
 		let payload = {
 			display_image,
 			name,

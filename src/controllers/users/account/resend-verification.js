@@ -90,9 +90,9 @@ module.exports.sendVerificationOTP = async (req, res) => {
 		otpResult = await OtpRepo.create(otpPayload);
 	}
 
-	const text = encodeURIComponent(`Your OTP is ${otpResult.otp_code} for Three Style. We highly recommend not share it with others. Gomzi`);
+	const text = encodeURIComponent(`Your OTP is ${otpResult.otp_code} for Three Style. We highly recommend not share it with others.`);
 	unirest
-		.post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352d&sender=GOMZIF&mobileno=${result.mobile}&text=${text}`)
+		.post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352e&sender=THREESTYLEF&mobileno=${result.mobile}&text=${text}`)
 		.then((response) => {
 			req.logger.info(JSON.stringify(response.body));
 		})

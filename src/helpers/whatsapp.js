@@ -1,6 +1,6 @@
 const unirest = require('unirest');
 const { logger } = require('../services');
-const process = require('process');
+// const process = require('process');
 // const WhatsAppToken = process.env.WhatsAppToken;
 // const phoneNumberID = process.env.phoneNumberID;
 let WhatsAppToken;

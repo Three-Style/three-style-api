@@ -55,7 +55,7 @@ module.exports.emailVerification = async (req, res) => {
 		return response(res, httpStatus.OK, undefined, {
 			...responseInterface,
 			status: `Your account already verified for ${decodedToken.email}.`,
-			message: `Please login and access various features. <input type="hidden" value="https://fggroup.in?action=Login" id="hiddenRedirect">`,
+			message: `Please login and access various features. <input type="hidden" value="https://threestyle.in?action=Login" id="hiddenRedirect">`,
 			name: `${userResult.first_name} ${userResult.last_name || ''}`,
 			email: userResult.email,
 			redirect_path: '/index.html?action=Login',
@@ -96,7 +96,7 @@ module.exports.emailVerification = async (req, res) => {
 		return response(res, httpStatus.OK, undefined, {
 			...responseInterface,
 			status: `Your email address has been verified <i style="color:green"> ✓ </i>`,
-			message: `You can access our website without any restriction. <input type="hidden" value="https://fggroup.in?action=Login" id="hiddenRedirect">`,
+			message: `You can access our website without any restriction. <input type="hidden" value="https://threestyle.in?action=Login" id="hiddenRedirect">`,
 			name: `${result.first_name} ${result.last_name || ''}`,
 			email: result.email,
 			redirect_path: '/index.html?action=Login',

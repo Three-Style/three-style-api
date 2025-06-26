@@ -41,7 +41,7 @@ module.exports = async function (req, res) {
 
 	let userResult = await UserRepo.findOne({ _id: createdBy }, { password: false, authToken: false });
 
-	let custom_receipt = `${userService.meals}-${randomDigit()}`;
+	let custom_receipt = `${userService.clothing}-${randomDigit()}`;
 
 	if (!products || !Array.isArray(products) || products.length === 0) {
 		return response(res, httpStatus.BAD_REQUEST, 'Products array is required');
@@ -166,14 +166,14 @@ module.exports = async function (req, res) {
 
 	let notes = {
 		item_id: productResult.map((item) => convertToObjectId(item.product_id)),
-		item_type: itemType.meals,
+		item_type: itemType.clothing,
 		user_id: createdBy,
 	};
 
 	let razorpayOrderResult, orderPayload;
 	const multipleProduct = productResult.map((item) => ({
 		item_id: item.product_id,
-		item_type: itemType.meals,
+		item_type: itemType.clothing,
 		quantity: item.quantity,
 		amount: item.amount,
 		notes: {},
@@ -427,10 +427,10 @@ async function sendEmailAndWhatsapp(delivery_address, city_pin_code, orderDetail
 			],
 		};
 		// Invoice
-		WhatsAppHelper.sendMessage(orderDetails.user_id.mobile, 'gomzi_invoice_1', invoiceBody).catch((error) => logger.error(error.stack));
+		WhatsAppHelper.sendMessage(orderDetails.user_id.mobile, 'invoice_1', invoiceBody).catch((error) => logger.error(error.stack));
 
 		// Thank you
-		WhatsAppHelper.sendMessage(orderDetails.user_id.mobile, 'gomzi_invoice_thank_you', thankYouBody).catch((error) => logger.error(error.stack));
+		WhatsAppHelper.sendMessage(orderDetails.user_id.mobile, 'invoice_thank_you', thankYouBody).catch((error) => logger.error(error.stack));
 	}
 }
 function generateProductTable(products) {

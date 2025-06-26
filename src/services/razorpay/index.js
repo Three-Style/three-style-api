@@ -1,7 +1,6 @@
 const logger = require('../winston'),
 	razorpay = require('razorpay');
 const { paymentGateway } = require('../../common');
-const process = require('process');
 const CustomLogger = logger.__instance({
 	defaultMeta: {
 		requestId: 'Service:Razorpay',
@@ -32,20 +31,12 @@ const initializeRazorpay = (key_id, key_secret, name) => {
 	}
 };
 
-// let Razorpay_FWG = initializeRazorpay(process.env.RAZORPAY_KEY, process.env.RAZORPAY_SECRET, paymentGateway.razorpay);
-// let Razorpay_FGIIT = initializeRazorpay(process.env.RAZORPAY_FGIIT_KEY, process.env.RAZORPAY_FGIIT_SECRET, paymentGateway.razorpay_fgiit);
-// let Razorpay_FGMEALS = initializeRazorpay(process.env.RAZORPAY_FGMEALS_KEY, process.env.RAZORPAY_FGMEALS_SECRET, paymentGateway.razorpay_fgmeals);
-// let Razorpay_Gomzi_Consulting = initializeRazorpay(process.env.RAZORPAY_GOMZI_CONSULTING_KEY, process.env.RAZORPAY_GOMZI_CONSULTING_SECRET, paymentGateway.razorpay_gomzi_consulting);
-
-let Razorpay_FWG;
-let Razorpay_FGIIT;
-let Razorpay_FGMEALS;
-let Razorpay_Gomzi_Consulting;
+let Razorpay = initializeRazorpay(process.env.RAZORPAY_KEY, process.env.RAZORPAY_SECRET, paymentGateway.razorpay);
 
 /**
  * @author Brijesh Prajapati
  * @description Retrieves the appropriate Razorpay instance based on the specified gateway.
- * @param {('RAZORPAY' | 'RAZORPAY_FGIIT' | 'RAZORPAY_FGMEALS' | 'RAZORPAY GOMZI CONSULTING')} gateway - The gateway identifier.
+ * @param {('RAZORPAY')} gateway - The gateway identifier.
  * @returns {import('razorpay') & { key_id: string }} - The corresponding Razorpay instance.
  * @throws {Error} Throws an error if the gateway is invalid.
  */
@@ -56,13 +47,7 @@ module.exports = (gateway) => {
 	}
 
 	if (gateway === paymentGateway.razorpay) {
-		return Razorpay_FWG;
-	} else if (gateway === paymentGateway.razorpay_fgiit) {
-		return Razorpay_FGIIT;
-	} else if (gateway === paymentGateway.razorpay_fgmeals) {
-		return Razorpay_FGMEALS;
-	} else if (gateway === paymentGateway.razorpay_gomzi_consulting) {
-		return Razorpay_Gomzi_Consulting;
+		return Razorpay;
 	} else {
 		CustomLogger.error('Invalid Gateway');
 		throw new Error('Invalid Gateway');

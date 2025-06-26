@@ -50,3 +50,6 @@ module.exports.EBookRepo = require('./e-books');
 
 // Referral Coupon
 module.exports.ReferralCouponRepo = require('./referral-coupon');
+
+// FG Meal
+module.exports.UserMealProductRepo = require('./user_meal_product');

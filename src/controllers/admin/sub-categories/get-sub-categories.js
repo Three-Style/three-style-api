@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 			findQuery._id = req.query.id;
 		}
 
-		const SearchFields = ['_id', 'name'];
+		const SearchFields = ['_id', 'name', 'categories'];
 		Object.assign(findQuery, MongoDBQueryBuilder.searchTextQuery(req.query.search, SearchFields));
 
 		const pagination = PaginationHelper.getPagination(req.query);

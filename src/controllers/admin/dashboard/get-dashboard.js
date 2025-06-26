@@ -94,23 +94,7 @@ module.exports = async (req, res) => {
 
 		dashboardData.contact_inquiry = ContactInquiryResult;
 		dashboardData.active_user = ActiveUsers;
-		console.log(1);
 		dashboardData.weekly_scholarship_count = WeeklyScholarshipCount.length;
-		console.log(2);
-		// dashboardData.order_count = Orders.length;
-		// console.log(3);
-		// dashboardData.weekly_fitness_course_orders = Orders.filter((order) => order.order_item_type == itemType.fitness_course).length;
-		// console.log(4);
-		// dashboardData.weekly_book_orders = Orders.filter((order) => order.order_item_type == itemType.books).length;
-		// console.log(5);
-		// dashboardData.weekly_meal_orders = Orders.filter((order) => order.order_item_type == itemType.meals).length;
-		// console.log(6);
-		// dashboardData.weekly_pt_plan_registration = Orders.filter((order) => order.order_item_type == itemType.pt_plan).length;
-		// console.log(7);
-		// dashboardData.weekly_digital_plan_order = Orders.filter((order) => order.order_item_type == itemType.digital_plan).length;
-		// console.log(8);
-		// dashboardData.weekly_ebook_orders = Orders.filter((order) => order.order_item_type == itemType.ebooks).length;
-		console.log(9);
 		dashboardData.weekly_rtp_consultancy = WeeklyRTPConsultancy;
 		dashboardData.weekly_seminar_registration = WeeklySeminarRegistration;
 

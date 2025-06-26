@@ -6,7 +6,6 @@
 const mongoose = require('mongoose');
 const UserRepo = require('./users');
 const ProductSchema = require('./products');
-const BookSchema = require('./books');
 const { itemType, userStatus } = require('../common');
 const { logger } = require('../services');
 const Schema = mongoose.Schema;
@@ -69,14 +68,8 @@ schema.methods.populateItems = async function () {
 
 			// Determine which model to query based on item_type
 			switch (item.item_type) {
-				case itemType.meals:
+				case itemType.clothing:
 					populatedItem = await ProductSchema.findById(item.item_id).select('name price display_image');
-					break;
-				case itemType.pure_go_meals:
-					populatedItem = await ProductSchema.findById(item.item_id).select('name price display_image');
-					break;
-				case itemType.books:
-					populatedItem = await BookSchema.findById(item.item_id).select('book_title amount cover_image');
 					break;
 				// Add additional cases for other item types if necessary
 				default:

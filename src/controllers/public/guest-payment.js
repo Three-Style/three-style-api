@@ -277,7 +277,7 @@ module.exports.bookFWGWebinar = async (req, res) => {
 			ContactInquiryRepo.create(inquiryObject).catch((err) => req.logger.error(err));
 
 			// Response to Request
-			return response(res, httpStatus.OK, 'FitnessWithGomzi Webinar booked successfully.', { payment_id });
+			return response(res, httpStatus.OK, 'Three Style Webinar booked successfully.', { payment_id });
 		})
 		.catch((error) => {
 			if (error?.description === 'This payment has already been captured') {

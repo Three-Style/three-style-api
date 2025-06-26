@@ -14,3 +14,6 @@ module.exports.getProductsFeedbackController = require('./feedback/get-products-
 
 //Check Coupon Code
 module.exports.checkCouponCodeController = require('./check-coupon-code');
+
+// Contact Us
+module.exports.contactUsController = require('./contact-us');

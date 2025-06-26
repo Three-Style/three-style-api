@@ -262,10 +262,10 @@ module.exports = ({ razorpay_payment_id, razorpay_order_id, razorpay_signature, 
 
 			// --- Send SMS ---
 			// Estimated Delivery Date
-			// const text = encodeURIComponent(`Hi ${first_name}, Thank you for purchasing on Three Style. You can view the details of your purchase here https://fggroup.in/book/orders.html`)
+			// const text = encodeURIComponent(`Hi ${first_name}, Thank you for purchasing on Three Style. You can view the details of your purchase here https://threestyle.in/book/orders.html`)
 
 			// unirest
-			//     .post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352d&sender=GOMZIF&mobileno=${mobile}&text=${text}`)
+			//     .post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352e&sender=THREESTYLEF&mobileno=${mobile}&text=${text}`)
 			//     .then(response => {
 			//         logger.info(JSON.stringify(response.body))
 			//     }).catch(error => {

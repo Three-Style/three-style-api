@@ -12,11 +12,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://gitlab.com/fwg-application/three-style-apis"
+		"url": "https://gitlab.com/three-style-apis"
 	},
-	"author": "Three Style (Fitness With Gomzi)",
+	"author": "Three Style",
 	"license": "MIT License",
-	"homepage": "https://fggroup.in",
+	"homepage": "https://threestyle.in",
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.810.0",
 		"@google-analytics/data": "^4.12.1",

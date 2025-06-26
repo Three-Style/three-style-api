@@ -24,23 +24,16 @@ module.exports.Login = async (req, res) => {
 			return response(res, httpStatus.BAD_REQUEST, 'Email and password is required');
 		}
 
-		console.log(1);
-
 		// Ensure mongoose is connected before making the query
 		if (mongoose.connection.readyState !== 1) {
 			return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Database not connected. Please try again later.');
 		}
 
-		console.log(3);
 		// DB: Find
 		let result = await AdminRepo.findOne({ email, status: true }).select('+password +authToken');
-		console.log(2);
-
-		// console.log(1);
 		// // DB: Find
 		// let result = await AdminRepo.findOne({ email, status: true }).select('+password +authToken');
 
-		// console.log(2);
 		if (result) {
 			// Compare Hash Password
 			const isPasswordMatch = bcryptjs.compare(password, result.password);
@@ -57,9 +50,7 @@ module.exports.Login = async (req, res) => {
 				expiredAt: DayJS().add(24, 'hours').toDate(),
 			};
 
-			console.log(3);
 			let findExistingOTP = await OtpRepo.findOne({ user_id: result._id, isActive: true, via: payload.via, send_to: email, expiredAt: { $gte: DayJS().add(1, 'hours').toDate() } });
-			console.log(4);
 
 			if (!findExistingOTP) {
 				findExistingOTP = await OtpRepo.create(payload);
@@ -72,7 +63,7 @@ module.exports.Login = async (req, res) => {
 
 			return emailTemplate(emailTemplate.templates.EMAIL_OTP, { otp_code: findExistingOTP.otp_code })
 				.then((emailBody) => {
-					nodemailer('fitnesswithgomzi@gmail.com', findExistingOTP.send_to, 'OTP for Login in Administration Panel', emailBody).catch((error) => {
+					nodemailer('threestyle.wear@gmail.com', findExistingOTP.send_to, 'OTP for Login in Administration Panel', emailBody).catch((error) => {
 						return req.logger.error(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something went wrong while sending OTP', error);
 					});
 				})

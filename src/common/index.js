@@ -49,10 +49,7 @@ module.exports.purchaseMode = {
 };
 
 module.exports.paymentGateway = {
-	razorpay: 'RAZORPAY', // Registered Email: fitnesswithgomzi@gmail.com (Merchant ID: CiS87S7GTMLS25)
-	razorpay_fgiit: 'RAZORPAY_FGIIT', // Registered Email: fgiitsurat@gmail.com (Merchant ID: IwHEpNNtAPrDLR)
-	razorpay_fgmeals: 'RAZORPAY_FGMEALS', // Registered Email: gomzinutrition@gmail.com (Merchant ID: OejSEaaVBvxRmf)
-	razorpay_gomzi_consulting: 'RAZORPAY GOMZI CONSULTING', // Registered Email: ashishjani672@gmail.com (Merchant ID: PJ728F7GxhfZkN)
+	razorpay: 'RAZORPAY', // Registered Email: threestyle.wear@gmail.com (Merchant ID: CiS87S7GTMLS25)
 };
 
 module.exports.orderStatus = {
@@ -64,20 +61,14 @@ module.exports.orderStatus = {
 };
 
 module.exports.itemType = {
-	meals: 'FG_MEAL_PRODUCT', // Ref.: Product
-	pt_plan: 'PT_PLAN', // Ref.: FWG > PT Plan
-	fitness_course: 'FITNESS_COURSE', // Ref.: FG IIT > Fitness Course,
-	digital_plan: 'DIGITAL_PLAN', // Ref.: FG Digital > Digital Plan
+	clothing: 'CLOTHING_PRODUCT', // Ref.: Product
 	books: 'BOOKS', // Ref.: Books [FGIIT]
 	ebooks: 'EBOOKS', // Ref.: E-Books [FGIIT]
 	item_cart: 'CART',
-	inpta: 'INPTA',
-	pure_go_meals: 'PURE_GO_MEAL_PRODUCT',
-	medical_product: 'MEDICAL_PRODUCT',
 };
 
 module.exports.userService = {
-	meals: 'FG-MEALS',
+	clothing: 'TS-CLOTHING',
 	digital: 'FG-DIGITAL',
 	fgiit: 'FGIIT',
 	fitness: 'FWG',

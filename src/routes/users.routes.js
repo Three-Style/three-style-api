@@ -58,9 +58,6 @@ userRoute.get('/meals/get-product-tracking', controller.getProductTrackingContro
 // Book & Product Feedback
 userRoute.post('/feedback/product', controller.createProductFeedbackController);
 
-// E-Books
-userRoute.post('/ebooks/create-order', controller.eBookControllers.createEBookPurchaseOrder);
-
 // Order Cart
 userRoute.post('/order-cart/add-item', controller.orderCartControllers.addToCartController);
 userRoute.get('/order-cart/get-carts', controller.orderCartControllers.getCartController);

@@ -31,9 +31,6 @@ module.exports.createProductFeedbackController = require('./product-feedback/cre
 module.exports.productLikeController = require('./product-feedback/like-unlike');
 module.exports.removeProductReviewController = require('./product-feedback/remove-feedback');
 
-// E-Books
-module.exports.eBookControllers = require('./e-books/ebooks.controller');
-
 // Order
 module.exports.ordersController = require('./order/orders.controller');
 

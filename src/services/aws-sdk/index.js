@@ -1,5 +1,5 @@
 /**
- * @author Brijesh Prajapati
+ * @author Smit Luvani
  * @description Set AWS Configuration
  * @module https://www.npmjs.com/package/aws-sdk
  */
@@ -11,8 +11,8 @@ const { awsSDK: awsSDKSecret } = require('../../config/secrets.json');
 const S3Client = new AWS_S3.S3Client({
 	region: awsSDKConfig.region,
 	credentials: {
-		accessKeyId: process.env.accessKeyId,
-		secretAccessKey: process.env.secretAccessKey,
+		accessKeyId: awsSDKSecret.accessKeyId,
+		secretAccessKey: awsSDKSecret.secretAccessKey,
 	},
 });
 

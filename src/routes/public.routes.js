@@ -25,4 +25,7 @@ publicRoutes.post('/file-upload', (req, res, next) => ((req.params.directory = '
 //Check Coupon Code
 publicRoutes.post('/check-coupon-code', controller.checkCouponCodeController);
 
+// Contact Form
+publicRoutes.post('/contact-inquiry', controller.contactUsController);
+
 module.exports = publicRoutes;

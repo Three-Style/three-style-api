@@ -27,15 +27,7 @@ const WebhookEvents = {
 };
 
 const DefaultGateway = {
-	[webhookHandler.pt_plan]: paymentGateway.razorpay,
-	[webhookHandler.fwg_plan]: paymentGateway.razorpay,
-	[webhookHandler.digital_plan]: paymentGateway.razorpay,
-	[webhookHandler.books]: paymentGateway.razorpay_gomzi_consulting,
-	[webhookHandler.fitness_course]: paymentGateway.razorpay_gomzi_consulting,
-	[webhookHandler.fitness_course_cart]: paymentGateway.razorpay_gomzi_consulting,
-	[webhookHandler.ebooks]: paymentGateway.razorpay_gomzi_consulting,
-	[webhookHandler.fg_meals]: paymentGateway.razorpay_fgmeals,
-	[webhookHandler.INPTA]: paymentGateway.razorpay_gomzi_consulting,
+	[webhookHandler.fg_meals]: paymentGateway.razorpay,
 };
 
 module.exports = { webhookHandler, PaymentCurrency: currency, webhookEvents: WebhookEvents, defaultGatewayPreference: DefaultGateway };

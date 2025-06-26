@@ -16,7 +16,7 @@
 		"salt": 6
 	},
 	"cors": {
-		"whitelist": ["https://fggroup.in", "https://admin.fggroup.in"]
+		"whitelist": ["https://threestyle.in", "https://admin.threestyle.in"]
 	},
 	"awsSDK": {
 		"region": "ap-south-1",
@@ -65,7 +65,7 @@
 			"application/mp4"
 		]
 	},
-	"filesHost": "https://files.fggroup.in",
+	"filesHost": "https://files.threestyle.in",
 	"healthCheckPaths": ["/", "/health", "/_ah/start"],
 	"ignoreLogPaths": ["/favicon.ico", "/images/icons/gear.png"]
 }

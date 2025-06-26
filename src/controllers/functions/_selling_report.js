@@ -224,8 +224,8 @@ Promise.all([
 		let finalResult = [...flexibleCourseReport, ...onlineCourseReport, ...offlineCourseReport, ...bookReport, ...ebookReport];
 
 		const Domain = {
-			development: 'https://admin.fggroup.in/pages/user/user_order_view.html?order_id=',
-			production: 'https://admin.fggroup.in/pages/user/user_order_view.html?order_id=',
+			development: 'https://admin.threestyle.in/pages/user/user_order_view.html?order_id=',
+			production: 'https://admin.threestyle.in/pages/user/user_order_view.html?order_id=',
 		};
 
 		let TotalAmount = {

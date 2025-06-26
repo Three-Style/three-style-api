@@ -4,9 +4,10 @@
  */
 
 const httpStatus = require('http-status');
-const { SubCategoriesRepo } = require('../../../database'),
+const { SubCategoriesRepo, CategoriesRepo } = require('../../../database'),
 	response = require('../../../utils/response');
 const { Joi } = require('../../../services');
+const { JoiObjectIdValidator } = require('../../../helpers/joi-custom-validators.helpers');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Admin > Sub Categories > Update Sub Categories');
@@ -14,16 +15,24 @@ module.exports = async (req, res) => {
 	let adminAuthData = req.headers.adminAuthData;
 
 	const BodySchema = Joi.object({
+		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		name: Joi.string().required(),
+		categories: Joi.string().custom(JoiObjectIdValidator).required(),
 	});
 
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { id, name } = req.body;
+	let { id, name, categories } = req.body;
 
 	try {
-		let payload = { name, createdBy: adminAuthData.id, updatedBy: adminAuthData.id };
+		if (categories) {
+			const categoriesData = await CategoriesRepo.findById(categories);
+			if (!categoriesData) {
+				return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something Went Wrong', 'Category not found');
+			}
+		}
+		let payload = { name, categories, createdBy: adminAuthData.id, updatedBy: adminAuthData.id };
 
 		// DB: find & update
 		return SubCategoriesRepo.findOneAndUpdate({ _id: id, status: true }, payload, { new: true })

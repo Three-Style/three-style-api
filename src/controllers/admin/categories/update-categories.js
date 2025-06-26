@@ -7,6 +7,7 @@ const httpStatus = require('http-status');
 const { CategoriesRepo } = require('../../../database'),
 	response = require('../../../utils/response');
 const { Joi } = require('../../../services');
+const { JoiObjectIdValidator } = require('../../../helpers/joi-custom-validators.helpers');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Admin > Categories > Update Categories');
@@ -14,6 +15,7 @@ module.exports = async (req, res) => {
 	let adminAuthData = req.headers.adminAuthData;
 
 	const BodySchema = Joi.object({
+		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		display_image: Joi.string().required(),
 		name: Joi.string().required(),
 	});

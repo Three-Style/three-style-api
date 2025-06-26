@@ -95,10 +95,10 @@ function FGMealsWebhook({ razorpay_payment_id, razorpay_order_id, razorpay_signa
 			if (orderUpdateResult.order_item_type === itemType.item_cart) {
 				// This is cart order. we should fetch meal product from cart.
 
-				products = orderUpdateResult.multiple_items.filter((item) => item.item_type === itemType.meals).map((item) => ({ product_id: item.item_id }));
+				products = orderUpdateResult.multiple_items.filter((item) => item.item_type === itemType.clothing).map((item) => ({ product_id: item.item_id }));
 
 				if (products.length === 0) {
-					return reject(`payment should be refund as no ${itemType.meals} product not found`);
+					return reject(`payment should be refund as no ${itemType.clothing} product not found`);
 				}
 
 				payload.products = products;
@@ -120,8 +120,8 @@ function FGMealsWebhook({ razorpay_payment_id, razorpay_order_id, razorpay_signa
 			resolve('success');
 
 			UserServiceRepo.findOneAndUpdate(
-				{ user_id: user_id, service: userService.meals },
-				{ user_id: user_id, service: userService.meals, status: true, createdBy: user_id, updatedBy: user_id },
+				{ user_id: user_id, service: userService.clothing },
+				{ user_id: user_id, service: userService.clothing, status: true, createdBy: user_id, updatedBy: user_id },
 				{ new: true, upsert: true }
 			).catch((error) => logger.error(error));
 
@@ -288,10 +288,10 @@ function FGMealsWebhook({ razorpay_payment_id, razorpay_order_id, razorpay_signa
 				};
 
 				// Invoice
-				WhatsAppHelper.sendMessage(mobile, 'gomzi_invoice_1', invoiceBody).catch((error) => logger.error(error.stack));
+				WhatsAppHelper.sendMessage(mobile, 'invoice_1', invoiceBody).catch((error) => logger.error(error.stack));
 
 				// Thank you
-				WhatsAppHelper.sendMessage(mobile, 'gomzi_invoice_thank_you', thankYouBody).catch((error) => logger.error(error.stack));
+				WhatsAppHelper.sendMessage(mobile, 'invoice_thank_you', thankYouBody).catch((error) => logger.error(error.stack));
 			}
 
 			/**
@@ -299,10 +299,10 @@ function FGMealsWebhook({ razorpay_payment_id, razorpay_order_id, razorpay_signa
 			 */
 
 			// Estimated Delivery Date
-			// const text = encodeURIComponent(`Hi ${first_name}, Thank you for purchasing on Three Style. You can view the details of your purchase here https://fggroup.in/fgmeals/orders.html`);
+			// const text = encodeURIComponent(`Hi ${first_name}, Thank you for purchasing on Three Style. You can view the details of your purchase here https://threestyle.in/fgmeals/orders.html`);
 
 			// unirest
-			//     .post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352d&sender=GOMZIF&mobileno=${mobile}&text=${text}`)
+			//     .post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352e&sender=THREESTYLEF&mobileno=${mobile}&text=${text}`)
 			//     .then(response => {
 			//         logger.info(JSON.stringify(response.body))
 			//     }).catch(error => {

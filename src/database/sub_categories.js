@@ -11,6 +11,7 @@ let required = true,
 const sub_categories = new mongoose.Schema(
 	{
 		name: { type: String, required },
+		categories: { type: ObjectId, ref: 'categories' },
 		createdBy: { type: ObjectId, required, trim },
 		updatedBy: { type: ObjectId, required, trim },
 		status: { type: Boolean, required, trim, default: true },

@@ -135,10 +135,10 @@
 // 			// 				doc.setFont('helvetica', 'bold');
 // 			// 				doc.text(`From:`, 20, 56);
 // 			// 				doc.setFont('helvetica', 'normal');
-// 			// 				doc.text(`Gomzi Consulting Services Pvt. Ltd.`, 33, 56);
+// 			// 				doc.text(`Three Style`, 33, 56);
 
 // 			// 				doc.text(`Dear ${employeeTask.full_name},`, 20, 70);
-// 			// 				doc.text(`We regret to inform you that your employment with Gomzi Consulting Services Pvt. Ltd. will be terminated effective ${monthEndingDate}.`, 20, 80, { maxWidth: 170 });
+// 			// 				doc.text(`We regret to inform you that your employment with Three Style will be terminated effective ${monthEndingDate}.`, 20, 80, { maxWidth: 170 });
 
 // 			// 				doc.setFont('helvetica', 'bold');
 // 			// 				doc.text('Reason for Termination:', 20, 95);
@@ -162,9 +162,9 @@
 // 			// 				doc.setFont('helvetica', 'bold');
 // 			// 				doc.text('Sincerely,', 20, 154);
 // 			// 				doc.setFont('helvetica', 'normal');
-// 			// 				doc.text('Gautam Jani', 20, 161);
+// 			// 				doc.text('Brijesh Prajapati', 20, 161);
 // 			// 				doc.text('Founder', 20, 168);
-// 			// 				doc.text('Gomzi Consulting Services Pvt. Ltd.', 20, 175);
+// 			// 				doc.text('Three Style', 20, 175);
 
 // 			// 				doc.save(filePath);
 // 			// 				resolve(filePath);
@@ -194,7 +194,7 @@
 
 // 			// 			await s3.send(new PutObjectCommand(uploadParams));
 
-// 			// 			const s3Url = `https://files.fggroup.in/${fileName}`;
+// 			// 			const s3Url = `https://files.threestyle.in/${fileName}`;
 
 // 			// 			fs.unlinkSync(filePath);
 // 			// 			return s3Url;
@@ -216,7 +216,7 @@
 
 // 			// 	emailTemplate('TERMINATION_LETTER', emailBody)
 // 			// 		.then((terminationLetterTemplateBody) => {
-// 			// 			nodemailer('fitnesswithgomzi@gmail.com', employeeTask.email, 'Termination Letter', terminationLetterTemplateBody, 'Three Style');
+// 			// 			nodemailer('threestyle.wear@gmail.com', employeeTask.email, 'Termination Letter', terminationLetterTemplateBody, 'Three Style');
 // 			// 		})
 // 			// 		.catch((error) => logger.error('Error generating email template:', error));
 // 			// }

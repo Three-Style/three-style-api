@@ -19,12 +19,12 @@ module.exports = async (req, res) => {
 	let ordersFilter = {
 		user_id: ObjectId.createFromHexString(userAuthData.id),
 		$or: [
-			{ order_item_type: itemType.meals },
+			{ order_item_type: itemType.clothing },
 			{
 				$and: [
 					{ order_item_type: itemType.item_cart },
 					{
-						'multiple_items.item_type': itemType.meals,
+						'multiple_items.item_type': itemType.clothing,
 					},
 				],
 			},

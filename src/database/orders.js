@@ -39,7 +39,7 @@ const orders = new mongoose.Schema(
 				item_type: {
 					type: String,
 					required,
-					enum: [itemType.fitness_course, itemType.books, itemType.meals],
+					enum: [itemType.clothing],
 				},
 				quantity: { type: Number, required },
 				amount: { type: Number, required },
@@ -142,13 +142,7 @@ orders.methods.populateItems = async function () {
 
 			// Determine which model to query based on item_type
 			switch (item.item_type) {
-				case itemType.books:
-					populatedItem = await BooksSchema.findById(item.item_id).select('book_title amount');
-					break;
-				case itemType.ebooks:
-					populatedItem = await EBooksSchema.findById(item.item_id).select('ebook_title amount');
-					break;
-				case itemType.meals:
+				case itemType.clothing:
 					populatedItem = await ProductSchema.findById(item.item_id).select('name price display_image');
 					break;
 				default:

@@ -6,22 +6,7 @@
 const httpStatus = require('http-status');
 const response = require('../../../utils/response');
 const { nodeCache, Joi } = require('../../../services');
-const {
-	OrdersRepo,
-	FitnessCourseRepo,
-	UserFitnessCourseRepo,
-	FitnessPlanRepo,
-	UserFitnessPlanRepo,
-	DigitalPlansRepo,
-	UserDigitalPlansRepo,
-	BooksRepo,
-	UserBooksRepo,
-	ProductsRepo,
-	UserMealProductRepo,
-	EBookRepo,
-	UserEBooksRepo,
-	INPTAPurchaseItemsRepo,
-} = require('../../../database');
+const { OrdersRepo, ProductsRepo, UserMealProductRepo } = require('../../../database');
 const { itemType, orderStatus } = require('../../../common');
 const moment = require('moment');
 const { GetOrderPrefix } = require('../../../common/cache_key');
@@ -165,26 +150,8 @@ module.exports.getOrderController = async (req, res) => {
 			.skip(pagination.skip)
 			.limit(pagination.limit)
 			.sort(SortQuery)
-
-			.populate('fitness_course', 'course_name coaching_mode amount course_category duration_days status currency', FitnessCourseRepo)
-			.populate('fitness_course_subscription', 'duration start_date end_date order_id', UserFitnessCourseRepo)
-
-			.populate('fitness_plan', 'plan_name duration amount', FitnessPlanRepo)
-			.populate('fitness_plan_subscription', 'duration start_date end_date order_id course_id', UserFitnessPlanRepo)
-
-			.populate('books', 'book_title amount', BooksRepo)
-			.populate('book_subscription', undefined, UserBooksRepo)
-
-			.populate('ebook', 'ebook_title amount file_url', EBookRepo)
-			.populate('ebook_purchase_info', undefined, UserEBooksRepo)
-
-			.populate('digital_plan', 'plan_name duration_days amount', DigitalPlansRepo)
-			.populate('digital_plan_subscription', undefined, UserDigitalPlansRepo)
-
 			.populate('product', 'name price display_image', ProductsRepo)
-			.populate('user_meal_product', undefined, UserMealProductRepo)
-
-			.populate('inpta', 'name price updatedAt', INPTAPurchaseItemsRepo);
+			.populate('user_meal_product', undefined, UserMealProductRepo);
 
 		orderResult = await Promise.all(
 			orderResult.map(async (order) => {

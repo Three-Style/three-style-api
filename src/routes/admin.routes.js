@@ -48,6 +48,21 @@ adminRoute.post('/product/update', controller.updateProductController);
 adminRoute.get('/product/get', controller.getProductController);
 adminRoute.post('/product/set-tracking-status', controller.productTrackingStatusController);
 
+// Categories
+adminRoute.post('/categories/add', controller.AddCategoriesController);
+adminRoute.post('/categories/update', controller.updateCategoriesController);
+adminRoute.get('/categories/get', controller.getCategoriesController);
+
+// Fabric
+adminRoute.post('/fabric/add', controller.AddFabricController);
+adminRoute.post('/fabric/update', controller.updateFabricController);
+adminRoute.get('/fabric/get', controller.getFabricController);
+
+// Sub Categories
+adminRoute.post('/sub-categories/add', controller.AddSubCategoriesController);
+adminRoute.post('/sub-categories/update', controller.updateSubCategoriesController);
+adminRoute.get('/sub-categories/get', controller.getSubCategoriesController);
+
 // Seeder
 adminRoute.patch('/seed/fitness-plan', seederController.fitnessPlan);
 adminRoute.patch('/seed/recipe', seederController.recipeData);

@@ -128,7 +128,7 @@
 // 						break;
 
 // 					case 41:
-// 						WhatsAppHelper.sendMessage(user.mobile, 'full_year_msg_twelve_t', commonImgMsg('https://fggroup.in/assets/images/fgiit/new-1.2.webp'));
+// 						WhatsAppHelper.sendMessage(user.mobile, 'full_year_msg_twelve_t', commonImgMsg('https://threestyle.in/assets/images/fgiit/new-1.2.webp'));
 // 						break;
 
 // 					case 43:
@@ -148,7 +148,7 @@
 // 						break;
 
 // 					case 50:
-// 						WhatsAppHelper.sendMessage(user.mobile, 'full_year_msg_fourteen', commonImgMsg('https://fggroup.in/assets/images/img/banner-mobile27.webp'));
+// 						WhatsAppHelper.sendMessage(user.mobile, 'full_year_msg_fourteen', commonImgMsg('https://threestyle.in/assets/images/img/banner-mobile27.webp'));
 // 						break;
 
 // 					case 52:

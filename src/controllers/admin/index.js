@@ -24,6 +24,21 @@ module.exports.updateProductController = require('./products/update-product');
 module.exports.getProductController = require('./products/get-product');
 module.exports.productTrackingStatusController = require('./products/set-tracking-status');
 
+// Categories
+module.exports.AddCategoriesController = require('./categories/add-categories');
+module.exports.updateCategoriesController = require('./categories/update-categories');
+module.exports.getCategoriesController = require('./categories/get-categories');
+
+// Fabric
+module.exports.AddFabricController = require('./fabric/add-fabric');
+module.exports.updateFabricController = require('./fabric/update-fabric');
+module.exports.getFabricController = require('./fabric/get-fabric');
+
+// Sub Categories
+module.exports.AddSubCategoriesController = require('./sub-categories/add-sub-categories');
+module.exports.updateSubCategoriesController = require('./sub-categories/update-sub-categories');
+module.exports.getSubCategoriesController = require('./sub-categories/get-sub-categories');
+
 // User
 module.exports.getUserController = require('./users/get-user');
 module.exports.updateUserController = require('./users/update-user');

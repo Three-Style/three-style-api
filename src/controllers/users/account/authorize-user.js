@@ -161,9 +161,9 @@ module.exports.createLoginUser = async (req, res) => {
 
 			if (data.via == otpViaCode.mobileVerification && process.env.NODE_ENV != common_environment.development) {
 				// Send OTP SMS
-				const text = encodeURIComponent(`Your OTP is ${data.otp} for Three Style. We highly recommend not share it with others. Gomzi`);
+				const text = encodeURIComponent(`Your OTP is ${data.otp} for Three Style. We highly recommend not share it with others.`);
 				unirest
-					.post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352d&sender=GOMZIF&mobileno=${mobile}&text=${text}`)
+					.post(`http://sms.mobileadz.in/api/push.json?apikey=615b7adfe352e&sender=THREESTYLEF&mobileno=${mobile}&text=${text}`)
 					.then((response) => {
 						req.logger.info(JSON.stringify(response.body));
 					})
