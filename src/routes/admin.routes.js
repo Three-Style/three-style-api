@@ -135,4 +135,7 @@ adminRoute.delete('/expense/delete', controller.expenseControllers.deleteExpense
 // Order Cart
 adminRoute.get('/order-cart/get', controller.orderCartsControllers.getCartController);
 
+// Wishlist
+adminRoute.get('/wishlist/get', controller.getWishlistController);
+
 module.exports = adminRoute;

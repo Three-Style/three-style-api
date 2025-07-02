@@ -89,3 +89,6 @@ module.exports.invoiceControllers = require('./invoice/invoice.controllers');
 
 // Expense
 module.exports.expenseControllers = require('./expense/expense.controllers');
+
+// Wishlist
+module.exports.getWishlistController = require('./wishlist/get-wishlist');

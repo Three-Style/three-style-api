@@ -70,4 +70,10 @@ userRoute.get('/orders/get', controller.ordersController.getOrderController);
 // Invoice
 userRoute.get('/invoice/sign-invoice', controller.InvoiceControllers.signInvoiceController);
 
+// Wishlist
+userRoute.post('/wishlist/add', controller.AddWishlistController);
+userRoute.post('/wishlist/update', controller.updateWishlistController);
+userRoute.get('/wishlist/get', controller.getWishlistController);
+userRoute.delete('/wishlist/remove', controller.removeWishlistController);
+
 module.exports = userRoute;

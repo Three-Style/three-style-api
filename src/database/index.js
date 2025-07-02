@@ -53,3 +53,6 @@ module.exports.ReferralCouponRepo = require('./referral-coupon');
 
 // FG Meal
 module.exports.UserMealProductRepo = require('./user_meal_product');
+
+// Wishlist
+module.exports.WishlistRepo = require('./wishlist');

@@ -11,12 +11,12 @@ const CustomLogger = logger.__instance({
 	},
 });
 
-if (!process.env.MongoDB_URI) {
+if (!process.env.MONGODB_URI) {
 	CustomLogger.error('Secrets [Mongoose]: srv not found');
 	process.exit(1); // Exit if no connection string is found
 }
 
-const MongoDBConnectionString = process.env.MongoDB_URI;
+const MongoDBConnectionString = process.env.MONGODB_URI;
 const MAX_RETRIES = 5;
 const BASE_RETRY_DELAY = 1000; // 1 second
 

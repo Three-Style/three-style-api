@@ -35,3 +35,9 @@ module.exports.removeProductReviewController = require('./product-feedback/remov
 module.exports.ordersController = require('./order/orders.controller');
 
 module.exports.InvoiceControllers = require('./invoice/invoice.controllers');
+
+// Wishlist
+module.exports.AddWishlistController = require('./wishlist/add-wishlist');
+module.exports.updateWishlistController = require('./wishlist/update-wishlist');
+module.exports.getWishlistController = require('./wishlist/get-wishlist');
+module.exports.removeWishlistController = require('./wishlist/remove-wishlist');

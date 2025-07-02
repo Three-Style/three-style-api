@@ -5,13 +5,12 @@
 const mongoose = require('mongoose'),
 	ObjectId = mongoose.Types.ObjectId;
 
-let required = true,
-	trim = true;
+let trim = true;
 
 const products = new mongoose.Schema(
 	{
 		display_image: [{ type: String }],
-		name: { type: String, required },
+		name: { type: String },
 		price: { type: Number },
 		discount_price: { type: Number },
 		discount_percentage: { type: Number },
@@ -26,8 +25,8 @@ const products = new mongoose.Schema(
 			color_code: { type: String },
 		},
 		tags: [{ type: String }],
-		createdBy: { type: ObjectId, required, trim },
-		updatedBy: { type: ObjectId, required, trim },
+		createdBy: { type: ObjectId, trim },
+		updatedBy: { type: ObjectId, trim },
 		status: { type: Boolean, trim, default: true },
 		is_deleted: { type: Boolean, default: false },
 	},

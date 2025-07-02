@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 	const BodySchema = Joi.object({
 		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		display_image: Joi.array().items(Joi.string()).optional(),
-		name: Joi.string().required(),
+		name: Joi.string().optional(),
 		price: Joi.number().min(1).optional(),
 		discount_price: Joi.number().min(1).optional(),
 		discount_percentage: Joi.number().min(1).optional(),
@@ -31,6 +31,7 @@ module.exports = async (req, res) => {
 			color_code: Joi.string().optional(),
 		}).optional(),
 		tags: Joi.array().items(Joi.string()).optional(),
+		status: Joi.boolean().optional(),
 	});
 
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
@@ -78,7 +79,7 @@ module.exports = async (req, res) => {
 		}
 
 		// DB: find & update
-		return ProductsRepo.findOneAndUpdate({ _id: id, status: true }, payload, { new: true })
+		return ProductsRepo.findOneAndUpdate({ _id: id }, payload, { new: true })
 			.then((result) => (result ? response(res, httpStatus.OK, 'success', result) : response(res, httpStatus.OK, 'Incorrect product id')))
 			.catch((error) => response(res, httpStatus.INTERNAL_SERVER_ERROR, 'something went wrong', error));
 	} catch (error) {
