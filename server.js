@@ -1,3 +1,4 @@
+const fs = require('fs');
 console.clear();
 const process = require('process');
 
@@ -9,8 +10,14 @@ process.on('unhandledRejection', function (reason) {
 });
 
 // process.env.NODE_ENV = 'production';
-require('dotenv').config({ path: './.env.' + (process.env.NODE_ENV || 'development') });
-require('dotenv').config({ path: ['./.env.' + (process.env.NODE_ENV || 'development'), '.env.local'] });
+
+const envPath = `.env.${process.env.NODE_ENV || 'development'}`;
+if (fs.existsSync(envPath)) {
+	require('dotenv').config({ path: envPath });
+} else {
+	require('dotenv').config(); // fallback to .env
+}
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const listenerAPP = require('./app');
@@ -32,7 +39,6 @@ server.listen(process.env.PORT);
 require('./src/socket')(server); // Initialize Socket.io
 
 // Clear tmp folder
-const fs = require('fs');
 
 function deleteFolderRecursive(path) {
 	if (fs.existsSync(path)) {
