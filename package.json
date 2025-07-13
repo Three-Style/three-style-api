@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon --trace-warnings --legacy-watch --verbose server.js",
-		"start:prod": "cross-env NODE_ENV=production nodemon server.js",
+		"start:prod": "cross-env NODE_ENV=production node server.js",
 		"prepare": "husky",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix --cache",
