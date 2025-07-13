@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon --trace-warnings --legacy-watch --verbose server.js",
+		"start:prod": "cross-env NODE_ENV=production nodemon server.js",
 		"prepare": "husky",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix --cache",
@@ -67,6 +68,7 @@
 	],
 	"devDependencies": {
 		"@eslint/js": "^9.26.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.4.0",

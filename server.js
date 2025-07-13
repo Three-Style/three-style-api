@@ -9,8 +9,6 @@ process.on('unhandledRejection', function (reason) {
 	console.error(reason);
 });
 
-// process.env.NODE_ENV = 'production';
-
 const envPath = `.env.${process.env.NODE_ENV || 'development'}`;
 if (fs.existsSync(envPath)) {
 	require('dotenv').config({ path: envPath });
@@ -18,7 +16,8 @@ if (fs.existsSync(envPath)) {
 	require('dotenv').config(); // fallback to .env
 }
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+// process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const listenerAPP = require('./app');
 const { logger } = require('./src/services');

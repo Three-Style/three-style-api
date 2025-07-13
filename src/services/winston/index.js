@@ -30,6 +30,9 @@ if (process.env.LOG_LEVEL) {
 		case 'beta':
 			logLevel = 'debug';
 			break;
+		case 'production':
+			logLevel = 'info';
+			break;
 		default:
 			logLevel = 'warn';
 			break;
