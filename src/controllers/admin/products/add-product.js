@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
 		price: Joi.number().min(1).required(),
 		discount_price: Joi.number().min(1).required(),
 		discount_percentage: Joi.number().min(1).required(),
+		short_description: Joi.string().required(),
 		description: Joi.string().required(),
 		categories: Joi.string().custom(JoiObjectIdValidator).required(),
 		fabric: Joi.string().custom(JoiObjectIdValidator).required(),
@@ -37,7 +38,7 @@ module.exports = async (req, res) => {
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { display_image, name, price, discount_price, discount_percentage, description, categories, fabric, sub_categories, stock, color, tags } = req.body;
+	let { display_image, name, price, discount_price, discount_percentage, short_description, description, categories, fabric, sub_categories, stock, color, tags } = req.body;
 
 	try {
 		if (categories) {
@@ -75,6 +76,7 @@ module.exports = async (req, res) => {
 			price,
 			discount_price,
 			discount_percentage,
+			short_description,
 			description,
 			categories,
 			fabric,

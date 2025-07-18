@@ -14,6 +14,7 @@ const products = new mongoose.Schema(
 		price: { type: Number },
 		discount_price: { type: Number },
 		discount_percentage: { type: Number },
+		short_description: { type: String },
 		description: { type: String },
 		categories: { type: ObjectId, ref: 'categories' },
 		fabric: { type: ObjectId, ref: 'fabric' },
