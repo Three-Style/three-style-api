@@ -4,7 +4,7 @@
  */
 
 const httpStatus = require('http-status'),
-	{ UserRepo, UserServiceRepo, UserFitnessCourseRepo, UserBooksRepo } = require('../../../database'),
+	{ UserRepo, UserServiceRepo } = require('../../../database'),
 	response = require('../../../utils/response');
 const { UserProfilePrefix } = require('../../../common/cache_key');
 const { getCacheMetadata } = require('../../cache-manager/cache-manager');
@@ -32,7 +32,9 @@ module.exports = async (req, res) => {
 		// DB: Find
 		let result = await UserRepo.findById(userAuthData.id).select('-password -authToken -fcm_token').lean();
 
-		let userServices = await UserServiceRepo.find({ user_id: result._id });
+		console.log(1);
+		let userServices = await UserServiceRepo?.find({ user_id: result._id });
+		console.log(2);
 
 		userServices = userServices.map((service) => service.service);
 
@@ -42,16 +44,6 @@ module.exports = async (req, res) => {
 			purchasedCourse: false,
 			purchasedBook: false,
 		};
-
-		let userCourse = await UserFitnessCourseRepo.find({ user_id: result._id }).countDocuments();
-		if (userCourse > 0) {
-			resultPayload.purchasedCourse = true;
-		}
-
-		let userBook = await UserBooksRepo.find({ user_id: result._id }).countDocuments();
-		if (userBook > 0) {
-			resultPayload.purchasedBook = true;
-		}
 
 		GeneralCache.set(CacheKey, resultPayload, CacheTTL);
 

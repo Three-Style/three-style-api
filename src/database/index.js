@@ -34,6 +34,9 @@ module.exports.ContactInquiryRepo = require('./contact_inquiry');
 // Users
 module.exports.UserRepo = require('./users');
 
+// User Service
+module.exports.UserServiceRepo = require('./user_service');
+
 // Otp
 module.exports.OtpRepo = require('./otp');
 
