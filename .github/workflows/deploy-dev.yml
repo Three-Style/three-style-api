@@ -1,0 +1,32 @@
+# for dev
+
+name: 🚀 Deploy to EC2 on Push
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@dev-api.threestyle.in << 'EOF'
+            cd ~/dev-api/three-style-api
+            git pull origin dev
+            npm install
+            npm run build
+            pm2 restart all
+          EOF
