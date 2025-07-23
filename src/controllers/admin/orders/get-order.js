@@ -6,23 +6,7 @@
 const httpStatus = require('http-status');
 const response = require('../../../utils/response');
 const { nodeCache, Joi } = require('../../../services');
-const {
-	OrdersRepo,
-	UserRepo,
-	FitnessCourseRepo,
-	UserFitnessCourseRepo,
-	FitnessPlanRepo,
-	UserFitnessPlanRepo,
-	DigitalPlansRepo,
-	UserDigitalPlansRepo,
-	BooksRepo,
-	UserBooksRepo,
-	ProductsRepo,
-	UserMealProductRepo,
-	EBookRepo,
-	UserEBooksRepo,
-	INPTAPurchaseItemsRepo,
-} = require('../../../database');
+const { OrdersRepo, UserRepo, BooksRepo, ProductsRepo, UserMealProductRepo, EBookRepo } = require('../../../database');
 const { userStatus, itemType, orderStatus } = require('../../../common');
 const moment = require('moment');
 const { GetOrderPrefix } = require('../../../common/cache_key');
@@ -176,25 +160,12 @@ module.exports = async (req, res) => {
 			.sort(SortQuery)
 			.populate('user_info', 'country_code email emailVerified first_name last_name mobile mobileVerified status profile_image', UserRepo, { status: userStatus.active })
 
-			.populate('fitness_course', 'course_name coaching_mode amount course_category duration_days status currency', FitnessCourseRepo)
-			.populate('fitness_course_subscription', 'duration start_date end_date order_id course_id', UserFitnessCourseRepo)
-
-			.populate('fitness_plan', 'plan_name duration amount', FitnessPlanRepo)
-			.populate('fitness_plan_subscription', 'duration start_date end_date order_id', UserFitnessPlanRepo)
-
 			.populate('books', 'book_title amount', BooksRepo)
-			.populate('book_subscription', undefined, UserBooksRepo)
 
 			.populate('ebook', 'ebook_title amount', EBookRepo)
-			.populate('ebook_purchase_info', undefined, UserEBooksRepo)
-
-			.populate('digital_plan', 'plan_name duration_days amount', DigitalPlansRepo)
-			.populate('digital_plan_subscription', undefined, UserDigitalPlansRepo)
 
 			.populate('product', 'name price display_image', ProductsRepo)
-			.populate('user_meal_product', undefined, UserMealProductRepo)
-
-			.populate('inpta', 'name price', INPTAPurchaseItemsRepo);
+			.populate('user_meal_product', undefined, UserMealProductRepo);
 
 		orderResult = await Promise.all(
 			orderResult.map(async (order) => {

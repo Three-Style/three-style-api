@@ -32,8 +32,8 @@ module.exports.email = async (value, checkDisposable) => {
 
 		if (body.disposable) {
 			logger.error('Disposable Email found');
+			return false; // explicitly reject disposable email
 		}
-		return body.disposable;
 	}
 
 	return true; // If Pass the Validation

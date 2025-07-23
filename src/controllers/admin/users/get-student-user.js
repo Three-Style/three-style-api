@@ -4,12 +4,9 @@
  */
 
 const httpStatus = require('http-status');
-const { UserRepo, UserFitnessCourseRepo, FitnessCourseRepo } = require('../../../database');
-const { userStatus } = require('../../../common');
 const response = require('../../../utils/response');
 const { isValidObjectId } = require('mongoose');
-const { isUndefined, pickBy } = require('lodash');
-const { PaginationHelper, MongoDBQueryBuilder } = require('../../../helpers');
+const { pickBy } = require('lodash');
 const { ObjectId } = require('mongoose').Types;
 
 module.exports = async (req, res) => {
@@ -51,38 +48,7 @@ module.exports = async (req, res) => {
 	}
 
 	try {
-		FitnessCourseRepo.find(fitnessCourseQuery, { _id: true }, { lean: true }).then((fitnessCourseResult) => {
-			userFitnessCourseFindQuery.course_id = { $in: fitnessCourseResult.map((i) => i._id) };
-			UserFitnessCourseRepo.find(userFitnessCourseFindQuery, { user_id: true }, { lean: true }).then(async (userFitnessCourseResult) => {
-				let findQuery = { _id: { $in: userFitnessCourseResult.map((item) => item.user_id) }, status: { $ne: userStatus.deleted } };
-
-				if (!isUndefined(alumni)) findQuery.alumni = alumni;
-
-				const SearchFields = ['_id', 'first_name', 'last_name', 'uid', 'email', 'mobile'];
-				Object.assign(findQuery, MongoDBQueryBuilder.searchTextQuery(req.query.search, SearchFields));
-
-				const MaxLimit = 100;
-				Object.assign(req.query, { maxLimit: MaxLimit });
-
-				const pagination = PaginationHelper.getPagination(req.query, { maxLimit: MaxLimit });
-				const SortQuery = MongoDBQueryBuilder.sortQuery(req.query.sort, req.query.sortOrder);
-				const CountDocs = await UserRepo.countDocuments(findQuery);
-				const PaginationInfo = PaginationHelper.getPaginationInfo(CountDocs, req.query);
-
-				return UserRepo.find(findQuery, { password: false, authToken: false, fcm_token: false })
-					.skip(pagination.skip)
-					.limit(pagination.limit)
-					.sort(SortQuery)
-					.lean()
-					.then((result) => {
-						return response(res, httpStatus.OK, 'success', result, undefined, {
-							pagination: PaginationInfo,
-							search_fields: SearchFields,
-						});
-					})
-					.catch((error) => response(res, httpStatus.INTERNAL_SERVER_ERROR, error.message || 'Something went wrong', error));
-			});
-		});
+		// aaa
 	} catch (error) {
 		return response(res, httpStatus.INTERNAL_SERVER_ERROR, error.message || 'Something went wrong', error);
 	}
