@@ -5,7 +5,7 @@
 
 const httpStatus = require('http-status');
 const response = require('../../utils/response');
-const { ProductsRepo, ProductLikeRepo } = require('../../database');
+const { ProductsRepo, ProductLikeRepo, FabricRepo, SubCategoriesRepo, CategoriesRepo } = require('../../database');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Public > Get product');
@@ -82,6 +82,36 @@ module.exports = async (req, res) => {
 		{
 			$unwind: { path: '$user_reviews', preserveNullAndEmptyArrays: true },
 		},
+		// Populate category
+		{
+			$lookup: {
+				from: CategoriesRepo.collection.collectionName,
+				localField: 'categories',
+				foreignField: '_id',
+				as: 'categories',
+			},
+		},
+		{ $unwind: { path: '$categories', preserveNullAndEmptyArrays: true } },
+		// Populate sub_categories
+		{
+			$lookup: {
+				from: SubCategoriesRepo.collection.collectionName,
+				localField: 'sub_categories',
+				foreignField: '_id',
+				as: 'sub_categories',
+			},
+		},
+		{ $unwind: { path: '$sub_categories', preserveNullAndEmptyArrays: true } },
+		// Populate fabric
+		{
+			$lookup: {
+				from: FabricRepo.collection.collectionName,
+				localField: 'fabric',
+				foreignField: '_id',
+				as: 'fabric',
+			},
+		},
+		{ $unwind: { path: '$fabric', preserveNullAndEmptyArrays: true } },
 		// {
 		// 	$lookup: {
 		// 		from: ProductsReviewRepo.collection.collectionName,

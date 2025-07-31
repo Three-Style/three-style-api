@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
 		let feedbackResult = await ProductFeedbackRepo.find(findFilter).select('feedback_point feedback_comment product_id createdAt user_id').populate('product', { name: true }).populate('user', {
 			first_name: true,
 			last_name: true,
+			profile_image: true,
 		});
 
 		return response(res, httpStatus.OK, 'success', feedbackResult);
