@@ -271,8 +271,6 @@ module.exports.verifyUser = async (req, res) => {
 							createdOn: String(new Date()),
 						});
 
-						console.log('UserServiceRepo :- ', UserServiceRepo);
-
 						UserServiceRepo.find({ user_id: findUser._id, status: true }).then((userServices) => {
 							userServices = userServices.map((service) => service.service);
 

@@ -1,6 +1,6 @@
 /**
  * @author Brijesh Prajapati
- * @description Modify Product
+ * @description Modify Product (with Variants)
  */
 
 const httpStatus = require('http-status');
@@ -14,33 +14,45 @@ module.exports = async (req, res) => {
 
 	let adminAuthData = req.headers.adminAuthData;
 
+	// Joi validation schema
 	const BodySchema = Joi.object({
 		id: Joi.string().custom(JoiObjectIdValidator).required(),
 		display_image: Joi.array().items(Joi.string()).optional(),
 		name: Joi.string().optional(),
 		price: Joi.number().min(1).optional(),
-		discount_price: Joi.number().min(1).optional(),
+		original_price: Joi.number().min(1).optional(),
 		discount_percentage: Joi.number().min(1).optional(),
 		short_description: Joi.string().optional(),
 		description: Joi.string().optional(),
 		categories: Joi.string().custom(JoiObjectIdValidator).optional(),
 		fabric: Joi.string().custom(JoiObjectIdValidator).optional(),
 		sub_categories: Joi.string().custom(JoiObjectIdValidator).optional(),
-		stock: Joi.number().min(1).optional(),
-		color: Joi.object({
-			color_name: Joi.string().optional(),
-			color_code: Joi.string().optional(),
-		}).optional(),
 		tags: Joi.array().items(Joi.string()).optional(),
 		status: Joi.boolean().optional(),
+
+		// ✅ New: variants array for update
+		variants: Joi.array()
+			.items(
+				Joi.object({
+					_id: Joi.string().custom(JoiObjectIdValidator).optional(), // existing variant ID (for updating specific one)
+					color_name: Joi.string().optional(),
+					color_code: Joi.string().optional(),
+					size: Joi.string().allow('', null).optional(),
+					images: Joi.array().items(Joi.string()).optional(),
+					stock: Joi.number().min(0).optional(),
+					sku_no: Joi.string().allow('', null).optional(),
+				})
+			)
+			.optional(),
 	});
 
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { id, display_image, name, price, discount_price, discount_percentage, short_description, description, categories, fabric, sub_categories, stock, color, tags, status } = req.body;
+	let { id, display_image, name, price, original_price, discount_percentage, short_description, description, categories, fabric, sub_categories, tags, status, variants } = req.body;
 
 	try {
+		// Validate references
 		if (categories) {
 			const categoriesData = await CategoriesRepo.findById(categories);
 			if (!categoriesData) {
@@ -59,25 +71,29 @@ module.exports = async (req, res) => {
 				return response(res, httpStatus.INTERNAL_SERVER_ERROR, 'Something Went Wrong', 'Sub Category not found');
 			}
 		}
+
 		let payload = {
 			display_image,
 			name,
 			price,
-			discount_price,
+			original_price,
 			discount_percentage,
 			short_description,
 			description,
 			categories,
 			fabric,
 			sub_categories,
-			stock,
-			color,
 			tags,
-			createdBy: adminAuthData.id,
 			updatedBy: adminAuthData.id,
 		};
-		if (status != undefined) {
+
+		if (status !== undefined) {
 			payload.status = status;
+		}
+
+		if (variants) {
+			// Replace full variants array with new one (simple approach)
+			payload.variants = variants;
 		}
 
 		// DB: find & update

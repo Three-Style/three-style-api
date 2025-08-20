@@ -1,46 +1,56 @@
 /**
  * @author Brijesh Prajapati
- * @description Add Product
+ * @description Add Product (with Variants)
  */
 
 const httpStatus = require('http-status');
 const { ProductsRepo, CategoriesRepo, FabricRepo, SubCategoriesRepo } = require('../../../database'),
 	response = require('../../../utils/response');
 const { Joi } = require('../../../services');
-// const { randomDigit } = require('../../../utils/random');
 const { JoiObjectIdValidator } = require('../../../helpers/joi-custom-validators.helpers');
 
 module.exports = async (req, res) => {
 	req.logger.info('Controller > Admin > Products > Add Product');
 
 	let adminAuthData = req.headers.adminAuthData;
-	// let random_sku_no = randomDigit();
 
+	// Joi Schema
 	const BodySchema = Joi.object({
 		display_image: Joi.array().items(Joi.string()).required(),
 		name: Joi.string().required(),
 		price: Joi.number().min(1).required(),
-		discount_price: Joi.number().min(1).required(),
+		original_price: Joi.number().min(1).required(),
 		discount_percentage: Joi.number().min(1).required(),
 		short_description: Joi.string().required(),
 		description: Joi.string().required(),
 		categories: Joi.string().custom(JoiObjectIdValidator).required(),
 		fabric: Joi.string().custom(JoiObjectIdValidator).required(),
 		sub_categories: Joi.string().custom(JoiObjectIdValidator).required(),
-		stock: Joi.number().min(1).required(),
-		color: Joi.object({
-			color_name: Joi.string().required(),
-			color_code: Joi.string().required(),
-		}).required(),
 		tags: Joi.array().items(Joi.string()).required(),
+
+		// ✅ New: variants array
+		variants: Joi.array()
+			.items(
+				Joi.object({
+					color_name: Joi.string().required(),
+					color_code: Joi.string().required(),
+					size: Joi.string().allow('', null), // optional
+					images: Joi.array().items(Joi.string()).required(),
+					stock: Joi.number().min(0).required(),
+					sku_no: Joi.string().allow('', null), // can auto-generate if empty
+				})
+			)
+			.min(1)
+			.required(),
 	});
 
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { display_image, name, price, discount_price, discount_percentage, short_description, description, categories, fabric, sub_categories, stock, color, tags } = req.body;
+	let { display_image, name, price, original_price, discount_percentage, short_description, description, categories, fabric, sub_categories, tags, variants } = req.body;
 
 	try {
+		// Validate references
 		if (categories) {
 			const categoriesData = await CategoriesRepo.findById(categories);
 			if (!categoriesData) {
@@ -60,31 +70,28 @@ module.exports = async (req, res) => {
 			}
 		}
 
-		let new_sku_no;
+		// Auto-generate SKU numbers for variants if missing
+		let lastProduct = await ProductsRepo.findOne().sort({ 'variants.sku_no': -1 });
+		let baseSku = lastProduct && lastProduct.variants.length > 0 ? parseInt(lastProduct.variants[0].sku_no || '0') : 0;
 
-		const lastProduct = await ProductsRepo.findOne().sort({ sku_no: -1 });
-
-		if (lastProduct && lastProduct.sku_no) {
-			new_sku_no = String(parseInt(lastProduct.sku_no) + 1).padStart(4, '0');
-		} else {
-			new_sku_no = '0001';
-		}
+		variants = variants.map((variant, index) => ({
+			...variant,
+			sku_no: variant.sku_no || String(baseSku + index + 1).padStart(4, '0'),
+		}));
 
 		let payload = {
 			display_image,
 			name,
 			price,
-			discount_price,
+			original_price,
 			discount_percentage,
 			short_description,
 			description,
 			categories,
 			fabric,
 			sub_categories,
-			stock,
-			sku_no: new_sku_no,
-			color,
 			tags,
+			variants,
 			createdBy: adminAuthData.id,
 			updatedBy: adminAuthData.id,
 		};

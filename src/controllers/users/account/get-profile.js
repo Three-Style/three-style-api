@@ -32,9 +32,7 @@ module.exports = async (req, res) => {
 		// DB: Find
 		let result = await UserRepo.findById(userAuthData.id).select('-password -authToken -fcm_token').lean();
 
-		console.log(1);
 		let userServices = await UserServiceRepo?.find({ user_id: result._id });
-		console.log(2);
 
 		userServices = userServices.map((service) => service.service);
 
