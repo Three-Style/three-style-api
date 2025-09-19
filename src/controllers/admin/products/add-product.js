@@ -1,6 +1,6 @@
 /**
  * @author Brijesh Prajapati
- * @description Add Product (with Variants)
+ * @description Add Product (with Variants + Auto SKU)
  */
 
 const httpStatus = require('http-status');
@@ -27,17 +27,15 @@ module.exports = async (req, res) => {
 		fabric: Joi.string().custom(JoiObjectIdValidator).required(),
 		sub_categories: Joi.string().custom(JoiObjectIdValidator).required(),
 		tags: Joi.array().items(Joi.string()).required(),
-
-		// ✅ New: variants array
 		variants: Joi.array()
 			.items(
 				Joi.object({
 					color_name: Joi.string().required(),
 					color_code: Joi.string().required(),
-					size: Joi.string().allow('', null), // optional
+					size: Joi.string().allow('', null),
 					images: Joi.array().items(Joi.string()).required(),
 					stock: Joi.number().min(0).required(),
-					sku_no: Joi.string().allow('', null), // can auto-generate if empty
+					sku_no: Joi.string().allow('', null),
 				})
 			)
 			.min(1)
@@ -70,14 +68,23 @@ module.exports = async (req, res) => {
 			}
 		}
 
-		// Auto-generate SKU numbers for variants if missing
-		let lastProduct = await ProductsRepo.findOne().sort({ 'variants.sku_no': -1 });
-		let baseSku = lastProduct && lastProduct.variants.length > 0 ? parseInt(lastProduct.variants[0].sku_no || '0') : 0;
+		// 🔥 Find last SKU used globally (check all products + variants)
+		let lastVariant = await ProductsRepo.aggregate([{ $unwind: '$variants' }, { $sort: { 'variants.sku_no': -1 } }, { $limit: 1 }]);
 
-		variants = variants.map((variant, index) => ({
-			...variant,
-			sku_no: variant.sku_no || String(baseSku + index + 1).padStart(4, '0'),
-		}));
+		let lastSkuNumber = 0;
+		if (lastVariant.length > 0 && lastVariant[0].variants?.sku_no) {
+			let lastSku = lastVariant[0].variants.sku_no || 'SKU-000';
+			lastSkuNumber = parseInt(lastSku.replace('SKU-', '')) || 0;
+		}
+
+		// 🔥 Generate unique SKU for each variant
+		variants = variants.map((variant, index) => {
+			let newSkuNumber = lastSkuNumber + index + 1;
+			return {
+				...variant,
+				sku_no: `SKU-${String(newSkuNumber).padStart(3, '0')}`, // SKU-001, SKU-002 ...
+			};
+		});
 
 		let payload = {
 			display_image,

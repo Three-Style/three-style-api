@@ -1,6 +1,6 @@
 /**
  * @author Brijesh Prajapati
- * @description Modify Product (with Variants)
+ * @description Modify Product (with Variants + Auto SKU for new ones)
  */
 
 const httpStatus = require('http-status');
@@ -30,17 +30,29 @@ module.exports = async (req, res) => {
 		tags: Joi.array().items(Joi.string()).optional(),
 		status: Joi.boolean().optional(),
 
-		// ✅ New: variants array for update
+		// ✅ Variants
 		variants: Joi.array()
 			.items(
 				Joi.object({
-					_id: Joi.string().custom(JoiObjectIdValidator).optional(), // existing variant ID (for updating specific one)
+					_id: Joi.string().custom(JoiObjectIdValidator).optional(), // existing variant id
 					color_name: Joi.string().optional(),
 					color_code: Joi.string().optional(),
 					size: Joi.string().allow('', null).optional(),
 					images: Joi.array().items(Joi.string()).optional(),
 					stock: Joi.number().min(0).optional(),
-					sku_no: Joi.string().allow('', null).optional(),
+
+					// ✅ allow pricing fields in variant
+					price: Joi.number().min(0).allow('', null).optional(),
+					original_price: Joi.number().min(0).allow('', null).optional(),
+					discount_percentage: Joi.number().min(0).allow('', null).optional(),
+
+					// ✅ nested color object (if frontend sends it)
+					color: Joi.object({
+						color_name: Joi.string().allow('', null).optional(),
+						color_code: Joi.string().allow('', null).optional(),
+					}).optional(),
+
+					sku_no: Joi.string().allow('', null).optional(), // auto-generate if missing
 				})
 			)
 			.optional(),
@@ -72,6 +84,38 @@ module.exports = async (req, res) => {
 			}
 		}
 
+		// 🔥 If variants exist → handle SKU auto-generation
+		if (variants && variants.length > 0) {
+			// 1. Find the highest SKU in all products
+			let allProducts = await ProductsRepo.find({}, { 'variants.sku_no': 1 }).lean();
+			let allSkuNumbers = [];
+
+			allProducts.forEach((p) => {
+				if (p.variants && p.variants.length > 0) {
+					p.variants.forEach((v) => {
+						if (v.sku_no && v.sku_no.startsWith('SKU-')) {
+							let num = parseInt(v.sku_no.replace('SKU-', ''));
+							if (!isNaN(num)) allSkuNumbers.push(num);
+						}
+					});
+				}
+			});
+
+			let lastSkuNumber = allSkuNumbers.length > 0 ? Math.max(...allSkuNumbers) : 0;
+
+			// 2. Assign new SKUs only to variants without sku_no
+			variants = variants.map((variant) => {
+				if (!variant.sku_no || variant.sku_no.trim() === '') {
+					lastSkuNumber++;
+					return {
+						...variant,
+						sku_no: `SKU-${String(lastSkuNumber).padStart(3, '0')}`,
+					};
+				}
+				return variant; // keep old SKU if exists
+			});
+		}
+
 		let payload = {
 			display_image,
 			name,
@@ -92,7 +136,6 @@ module.exports = async (req, res) => {
 		}
 
 		if (variants) {
-			// Replace full variants array with new one (simple approach)
 			payload.variants = variants;
 		}
 
